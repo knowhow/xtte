@@ -1,0 +1,18 @@
+-- Group: timeexpensesheetitem
+-- Name:  teitemprev
+-- Notes: Find previous item
+<? if exists("teitem_id") ?>
+SELECT a.teitem_id
+FROM te.teitem AS a, te.teitem AS b
+WHERE ( (a.teitem_tehead_id = b.teitem_tehead_id)
+  AND   (a.teitem_linenumber < b.teitem_linenumber)
+  AND   (b.teitem_id=<? value("teitem_id") ?>) ) 
+ORDER BY a.teitem_linenumber DESC
+LIMIT 1;
+<? else ?>
+SELECT teitem_id
+FROM te.teitem
+WHERE (teitem_tehead_id=<? value("tehead_id") ?>)
+ORDER BY teitem_linenumber DESC
+LIMIT 1;
+<? endif ?>

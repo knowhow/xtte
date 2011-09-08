@@ -1,0 +1,23 @@
+-- Group: timeexpensesheetitem
+-- Name:  emptotals
+-- Notes: Employee Hours Totals
+SELECT
+  formatqty(coalesce(sum(day_hours),0)  + coalesce(<? value("hours") ?>,0)) as day_hours,
+  formatqty(coalesce(sum(sheet_hours),0) + coalesce(<? value("hours") ?>,0)) as sheet_hours
+FROM (
+  SELECT teitem_qty AS day_hours, 0 AS sheet_hours
+  FROM te.teitem
+   JOIN te.tehead ON (teitem_tehead_id=tehead_id)
+  WHERE ((tehead_emp_id=<? value("emp_id") ?>)
+   AND (teitem_id != <? value("teitem_id") ?>)
+   AND (teitem_workdate = <? value("workDate") ?>)
+   AND (teitem_type = 'T'))
+  UNION ALL
+  SELECT 0 AS day_hours, teitem_qty AS sheet_hours
+  FROM te.teitem
+   JOIN te.tehead ON (teitem_tehead_id=tehead_id)
+  WHERE ((tehead_emp_id=<? value("emp_id") ?>)
+   AND (teitem_id != <? value("teitem_id") ?>)
+   AND (tehead_id = <? value("tehead_id") ?>)
+   AND (teitem_type = 'T')) 
+) AS data;

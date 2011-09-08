@@ -1,0 +1,9 @@
+-- Group: task
+-- Name:  updteprjtask
+-- Notes: Update task time expense
+UPDATE te.teprjtask SET
+  teprjtask_cust_id=<? value("cust_id") ?>,
+  teprjtask_rate=<? value("rate") ?>,
+  teprjtask_curr_id=<? value("curr_id") ?>,
+  teprjtask_item_id=<? value("item_id") ?>
+WHERE (teprjtask_id=<? value("teprjtask_id") ?>);

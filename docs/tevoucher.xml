@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (c) 1998-2010 by xTuple. All rights reserved. -->
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<chapter>
+  <title>Vouchering Sheets</title>
+  <para>Now that you've set up Items and Employees, you are ready to begin
+  processing Time and Expense Sheets. In this chapter we will review how to
+  voucher Open Time and Expense Sheets. The following topics will be
+  covered:</para>
+  <itemizedlist>
+    <listitem>
+      <para>Approving Sheets</para>
+    </listitem>
+    <listitem>
+      <para>Vouchering Sheets</para>
+    </listitem>
+  </itemizedlist>
+  <section>
+    <title>Approving Sheets</title>
+    <para>Before you can Voucher a Time Sheet they must be approved. Approving
+    Sheets is performed in the Open Sheets screen. For this scenario, we'll
+    need to select a single Sheet to begin. To select a Sheet, follow these
+    steps:</para>
+    <orderedlist>
+      <listitem>
+        <para>Follow this path: <guimenuitem>CRM &gt; Project &gt; Time and
+        Expense...</guimenuitem></para>
+      </listitem>
+      <listitem>
+        <para>Select Status Open</para>
+      </listitem>
+      <listitem>
+        <para>Click QUERY</para>
+      </listitem>
+      <listitem>
+        <para>Right click on the open Sheet</para>
+      </listitem>
+      <listitem>
+        <para>The following screen will appear:</para>
+      </listitem>
+    </orderedlist>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="images/openapproval.png" />
+      </imageobject>
+      <caption>Open Sheets</caption>
+    </mediaobject>
+    <tip>
+      <para>Some of the button options available in the toolbar may be
+      disabled if you do not have the appropriate privileges. For more
+      information, please see <xref linkend="configurePermissions" />.</para>
+    </tip>
+    <para>Let's approve the open Sheet. To get started, follow these
+    steps:</para>
+    <orderedlist>
+      <listitem>
+        <para>Select the Sheet</para>
+      </listitem>
+      <listitem>
+        <para>Right click select the APPROVE button. The Sheet is now approved
+        and ready for Invoicing and Vouchering.</para>
+      </listitem>
+    </orderedlist>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="images/approved.png" />
+      </imageobject>
+      <caption>Approved Sheet</caption>
+    </mediaobject>
+  </section>
+  <section>
+    <title>Vouchering Sheets</title>
+    <para>The vouchering of specific Sheets is performed in the Open Sheets
+    screen. For this scenario, we'll need to select a single Sheet to
+    begin.</para>
+    <note>
+      <para>In order to generate a Voucher for an Employee, the Employee must
+      also be a Vendor.</para>
+    </note>
+    <para>To select a Sheet, follow these steps:</para>
+    <orderedlist>
+      <listitem>
+        <para>Follow this path: <guimenuitem>CRM &gt; Time and Expense &gt;
+        Open Sheets...</guimenuitem></para>
+      </listitem>
+      <listitem>
+        <para>Select Status Open and approved</para>
+      </listitem>
+      <listitem>
+        <para>Click QUERY</para>
+      </listitem>
+      <listitem>
+        <para>The following screen will appear:</para>
+      </listitem>
+    </orderedlist>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="images/approvedvoucher.png" />
+      </imageobject>
+      <caption>Open Sheets</caption>
+    </mediaobject>
+    <tip>
+      <para>Some of the button options available in the toolbar may be
+      disabled if you do not have the appropriate privileges. For more
+      information, please see <xref linkend="configurePermissions" />.</para>
+    </tip>
+    <para>To voucher, follow these steps:</para>
+    <orderedlist>
+      <listitem>
+        <para>Select a Sheet that has been approved</para>
+      </listitem>
+      <listitem>
+        <para>Check the "Voucher" check box at the bottom of the screen</para>
+      </listitem>
+      <listitem>
+        <para>Click the PROCESS button or use the right-click "Process" option
+        to generate a Voucher</para>
+        <note>
+          <para>The Voucher Status changes to "Yes" for Completed.</para>
+        </note>
+      </listitem>
+      <listitem>
+        <para>To review the unposted Voucher, follow this path:
+        <guimenuitem>Accounting &gt; Accounts Payable &gt; Voucher &gt; List
+        Unposted...</guimenuitem></para>
+      </listitem>
+      <listitem>
+        <para>The following screen will appear:</para>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="images/unpostedvouchers.png" />
+          </imageobject>
+          <caption>Unposted Vouchers</caption>
+        </mediaobject>
+      </listitem>
+    </orderedlist>
+    <para>The accounting distribution for the Voucher is determined by the
+    expense accounting information entered on the Item master for the
+    reference Item being used. The following screen shows the fully
+    distributed Voucher:</para>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="images/voucherwithdistributions.png" />
+      </imageobject>
+      <caption>Voucher with Distributions</caption>
+    </mediaobject>
+    <para>In addition, the Voucher line item will also contain any notes that
+    were associated with the expense entry.</para>
+  </section>
+</chapter>

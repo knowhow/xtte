@@ -1,0 +1,6 @@
+-- Group: timeexpensesheets
+-- Name:  close
+-- Notes: Close Time Expense Sheet
+UPDATE te.tehead SET 
+  tehead_status = 'C' 
+WHERE (tehead_id=<? value("tehead_id") ?>);

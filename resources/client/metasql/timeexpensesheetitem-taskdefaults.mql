@@ -1,0 +1,11 @@
+-- Group: timeexpensesheetitem
+-- Name:  taskdefaults
+-- Notes: Project Task default values
+SELECT 
+  COALESCE(teprj_cust_id,teprjtask_cust_id,-1) AS cust_id,
+  COALESCE(teprjtask_item_id,-1) AS item_id
+FROM prjtask
+  JOIN prj ON (prj_id=prjtask_prj_id)
+  LEFT OUTER JOIN te.teprj ON (teprj_prj_id=prj_id)
+  LEFT OUTER JOIN te.teprjtask ON (teprjtask_prjtask_id=prjtask_id)
+WHERE (prjtask_id=<? value("prjtask_id") ?>)

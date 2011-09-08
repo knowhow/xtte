@@ -1,0 +1,4 @@
+-- Group: timeexpensesheet
+-- Name:  deltehead
+-- Notes: Delete Time Expense Sheet
+DELETE FROM te.tehead WHERE (tehead_id=<? value("tehead_id") ?>);

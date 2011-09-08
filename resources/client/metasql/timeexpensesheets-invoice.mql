@@ -1,0 +1,12 @@
+-- Group: timeexpensesheets
+-- Name:  invoice
+-- Notes: Invoice Time Expense Sheet
+SELECT te.invoiceSheets(ARRAY[
+   <? foreach("tehead_ids") ?>
+     <? if not isfirst("tehead_ids") ?>
+      ,
+     <? endif ?>
+    <? value("tehead_ids") ?>
+   <? endforeach ?>
+]
+);

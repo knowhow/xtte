@@ -1,0 +1,10 @@
+-- Group: timeexpensesheetitem
+-- Name:  teitemnext
+-- Notes: Find Next Item
+SELECT a.teitem_id
+FROM te.teitem AS a, te.teitem AS b
+WHERE ((a.teitem_tehead_id = b.teitem_tehead_id)
+  AND (a.teitem_linenumber > b.teitem_linenumber)
+  AND (b.teitem_id=<? value("teitem_id") ?>))
+ORDER BY a.teitem_linenumber
+LIMIT 1;

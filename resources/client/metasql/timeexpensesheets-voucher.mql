@@ -1,0 +1,4 @@
+-- Group: timeexpensesheets
+-- Name:  voucher
+-- Notes: Voucher Time Expense Sheet
+SELECT te.voucherSheet(<? value("tehead_id") ?>);

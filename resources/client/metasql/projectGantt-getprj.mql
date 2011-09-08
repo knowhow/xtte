@@ -1,0 +1,6 @@
+-- Group: projectGantt
+-- Name:  getprj
+-- Notes: Fetch Project Info
+SELECT prj_id
+FROM prj
+WHERE (prj_number=<? value("prjNumber") ?>);

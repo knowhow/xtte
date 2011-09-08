@@ -1,0 +1,13 @@
+-- Group: project
+-- Name:  insteprj
+-- Notes: Insert project time expense record
+INSERT INTO te.teprj (
+  teprj_prj_id,
+  teprj_cust_id,
+  teprj_rate,
+  teprj_curr_id )
+VALUES (
+  <? value("prj_id") ?>,
+  <? value("cust_id") ?>,
+  <? value("rate") ?>,
+  <? value("curr_id") ?> );

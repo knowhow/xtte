@@ -1,0 +1,23 @@
+-- Group: projectGantt
+-- Name:  tasks
+-- Notes: Load project tasks for jsGantt
+SELECT 
+  prjtask_id, 
+  prjtask_name, 
+  EXTRACT('day' FROM prjtask_start_date) || '/' || 
+  EXTRACT('month' FROM prjtask_start_date) || '/' || 
+  EXTRACT('year' FROM prjtask_start_date)  AS start_date,
+  EXTRACT('day' FROM prjtask_due_date) || '/' || 
+  EXTRACT('month' FROM prjtask_due_date) || '/' || 
+  EXTRACT('year' FROM prjtask_due_date)  AS due_date 
+FROM (
+  SELECT 
+    prjtask_id,
+    prjtask_name,
+    COALESCE(prjtask_start_date,prjtask_due_date) AS prjtask_start_date,
+    prjtask_due_date
+  FROM prjtask
+
+
+  WHERE (prjtask_prj_id = <? value("prj_id") ?>)
+) data;

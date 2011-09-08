@@ -1,0 +1,8 @@
+-- Group: item
+-- Name:  selteexp
+-- Notes: Select Item Expense Settings
+SELECT 
+  teexp_expcat_id,
+  teexp_accnt_id
+FROM te.teexp
+WHERE (teexp_id=<? value("item_id") ?>);

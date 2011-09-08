@@ -1,0 +1,10 @@
+-- Group: timeexpensesheetitem
+-- Name:  taskbudg
+-- Notes: Task Budget
+SELECT
+  formatqty(prjtask_hours_budget) as budget_hours,
+  formatqty(prjtask_hours_actual) as actual_hours,
+  formatmoney(prjtask_exp_budget) as budget_cost,
+  formatmoney(prjtask_exp_actual) as actual_cost 
+FROM prjtask 
+WHERE (prjtask_id = <? value("task_id") ?>)

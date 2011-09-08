@@ -1,0 +1,8 @@
+-- Group: timeexpensesheet
+-- Name:  header
+-- Notes: 
+SELECT
+  tehead.*, emp_code
+FROM te.tehead
+  JOIN emp ON (tehead_emp_id= emp_id)
+WHERE (tehead_id = <? value("tehead_id") ?>);

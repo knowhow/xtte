@@ -1,0 +1,24 @@
+-- Group: timeexpensesheetitem
+-- Name:  updteitem
+-- Notes: Update Time Expense Item
+UPDATE te.teitem SET 
+  teitem_tehead_id=<? value("teitem_tehead_id") ?>,
+  teitem_linenumber=<? value("teitem_linenumber") ?>,
+  teitem_type=<? value("teitem_type") ?>,
+  teitem_workdate=<? value("teitem_workdate") ?>,
+  teitem_cust_id=<? value("teitem_cust_id") ?>,
+  teitem_po=<? value("teitem_po") ?>,
+  teitem_item_id=<? value("teitem_item_id") ?>,
+  teitem_uom_id=item_price_uom_id,
+  teitem_qty=<? value("teitem_qty") ?>,
+  teitem_rate=<? value("teitem_rate") ?>,
+  teitem_total=<? value("teitem_total") ?>,
+  teitem_prjtask_id=<? value("teitem_prjtask_id") ?>,
+  teitem_billable=<? value("teitem_billable") ?>,
+  teitem_prepaid=<? value("teitem_prepaid") ?>, 
+  teitem_notes=<? value("teitem_notes") ?>,
+  teitem_curr_id=<? value("teitem_curr_id") ?>
+FROM item
+WHERE ((teitem_id=<? value("teitem_id") ?>)
+ AND (teitem_item_id=item_id))
+RETURNING *;

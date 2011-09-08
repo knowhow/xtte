@@ -1,0 +1,8 @@
+-- Group: timeexpensesheet
+-- Name:  updtehead
+-- Notes: 
+UPDATE te.tehead SET 
+  tehead_emp_id = <? value("emp_id") ?>,
+  tehead_warehous_id = <? value("warehous_id") ?>,
+  tehead_notes = <? value("notes") ?> 
+WHERE tehead_id=<? value("tehead_id") ?>;

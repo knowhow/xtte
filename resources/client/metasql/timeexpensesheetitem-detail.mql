@@ -1,0 +1,13 @@
+-- Group: timeexpensesheetitem
+-- Name:  detail
+-- Notes: 
+SELECT *,
+ (SELECT (COUNT(teitem_id) = 0)
+  FROM te.teitem maxte
+  WHERE ((maxte.teitem_tehead_id=tehead_id)
+   AND (maxte.teitem_linenumber > curr.teitem_linenumber))) AS ismax
+FROM te.tehead
+  JOIN te.teitem curr ON (tehead_id = curr.teitem_tehead_id) 
+  JOIN prjtask ON (prjtask_id=curr.teitem_prjtask_id)
+  JOIN prj ON (prj_id=prjtask_prj_id)		
+WHERE (curr.teitem_id=<? value("teitem_id") ?>);

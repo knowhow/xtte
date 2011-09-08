@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (c) 1998-2010 by xTuple. All rights reserved. -->
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<chapter>
+  <title>Open Sheets</title>
+  <para>Now that you've set up Employees and Projects, you are ready to begin
+  processing Time and Expense Sheets. In this chapter we will review how to
+  process Open Time and Expense Sheets. The following topics will be
+  covered:</para>
+  <itemizedlist>
+    <listitem>
+      <para>Open Sheets</para>
+    </listitem>
+    <listitem>
+      <para>Sheet Header</para>
+    </listitem>
+    <listitem>
+      <para>Sheet Details</para>
+    </listitem>
+  </itemizedlist>
+  <section>
+    <title>Open Sheets</title>
+    <para>The processing of Sheets is handled by the Open Sheets screen. For
+    this scenario, we'll need to review the open Sheets to begin. To open a
+    Sheet, follow these steps:</para>
+    <orderedlist>
+      <listitem>
+        <para>Follow this path: <guimenuitem>CRM &gt; Project &gt; Time and
+        Expense...</guimenuitem></para>
+      </listitem>
+      <listitem>
+        <para>The following screen will appear:</para>
+      </listitem>
+    </orderedlist>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="images/opensheets.png" />
+      </imageobject>
+      <caption>Open Sheets</caption>
+    </mediaobject>
+    <tip>
+      <para>Some of the button options available in the toolbar may be
+      disabled if you do not have the appropriate privileges. For more
+      information, please see <xref linkend="configurePermissions" />.</para>
+    </tip>
+  </section>
+  <section>
+    <title>Sheet Tab</title>
+    <para>Let's begin a new Sheet. To get started, follow these steps:</para>
+    <orderedlist>
+      <listitem>
+        <para>Select the NEW button&mdash;<emphasis role="bold"><emphasis>this
+        will open the Time and Expense screen</emphasis></emphasis></para>
+      </listitem>
+      <listitem>
+        <para>In the "Sheet Date" field, enter a date that represents the
+        Sheet</para>
+        <note>
+          <para>The Sheet Date might be a Week Ending or Week Beginning date.
+          Most companies will use a standardized approach for this
+          date.</para>
+        </note>
+      </listitem>
+      <listitem>
+        <para>Select the appropriate Site</para>
+      </listitem>
+      <listitem>
+        <para>Select the Employee</para>
+      </listitem>
+    </orderedlist>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="images/timeexpense.png" />
+      </imageobject>
+      <caption>Time and Expense Header Information</caption>
+    </mediaobject>
+  </section>
+  <section>
+    <title>Sheet Details</title>
+    <para>Once you're on the Sheet tab, you are ready to enter detail
+    information on the Sheet. To begin entering Line Items, select the NEW
+    button. The following screen shows what you will see when selecting "Time"
+    as the Time Sheet entry type:</para>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="images/timeentry.png" />
+      </imageobject>
+      <caption>Time Entry</caption>
+    </mediaobject>
+    <para>Select the Project, Task, and reference Item previously created in
+    earlier chapters. When done, select the SAVE button to close and exit line
+    item.</para>
+    <para>Next, let's enter an expense entry. The following screen shows what
+    you will see when selecting "Expense" as the Time Sheet entry type:</para>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="images/expenseentry.png" />
+      </imageobject>
+      <caption>Expense Entry</caption>
+    </mediaobject>
+    <note>
+      <para>Individual fields are detailed in <ulink
+      url="http://www.xtuple.org/docs/reference-guide">Reference
+      Guide</ulink></para>
+    </note>
+    <para>Again, select the Project, Task and reference Item previously
+    created in earlier chapters. When done, select the SAVE button to close
+    and exit line item.</para>
+  </section>
+</chapter>

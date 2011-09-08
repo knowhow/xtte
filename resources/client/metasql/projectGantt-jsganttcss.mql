@@ -1,0 +1,4 @@
+-- Group: projectGantt
+-- Name:  jsganttcss
+-- Notes: Loads jsGantt CSS file
+SELECT script_source FROM script WHERE script_name = 'jsGanttCSS';

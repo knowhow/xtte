@@ -1,0 +1,6 @@
+-- Group: timeexpensesheetitem
+-- Name:  nextlinenum
+-- Notes: 
+SELECT  COALESCE(MAX(teitem_linenumber),0) +1 AS linenumber
+FROM te.teitem
+WHERE (teitem_tehead_id=<? value("tehead_id") ?>);

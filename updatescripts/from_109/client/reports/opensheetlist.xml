@@ -1,0 +1,527 @@
+<!DOCTYPE openRPTDef>
+<report>
+ <title>Open Sheet List</title>
+ <name>OpenSheetList</name>
+ <description></description>
+ <size>Letter</size>
+ <portrait/>
+ <topmargin>50</topmargin>
+ <bottommargin>50</bottommargin>
+ <rightmargin>50</rightmargin>
+ <leftmargin>50</leftmargin>
+ <querysource>
+  <name>detail</name>
+  <sql>select tehead_id,sheet_number,
+       formatdate(weekending) as weekending,emp_code,
+       formatmoney(dollars) as dollars,
+       case when (billable_status='A') then &lt;? value("approved") ?>
+            when (billable_status='C') then &lt;? value("closed") ?>
+            else &lt;? value("open") ?>
+       end as billable_status,
+       case when (payable_status='A') then &lt;? value("approved") ?>
+            when (payable_status='C') then &lt;? value("closed") ?>
+            else &lt;? value("open") ?>
+       end as payable_status
+from (select tehead_id,sheet_number,weekending,
+             emp_code,sum(dollars) as dollars,
+             billable_status, payable_status
+      from (select tehead_id,tehead_number as sheet_number,
+                   tehead_weekending as weekending,
+                   sum(teitem_qty) as hours,emp_code,
+                   sum(teitem_total) as dollars,
+                   tehead_billable_status as billable_status,
+                   tehead_payable_status as payable_status
+            from te.teitem,te.tehead,emp
+            where tehead_id = teitem_tehead_id
+              and emp_id = teitem_emp_id       
+              and teitem_type = 'E'
+              &lt;? if exists("employee") ?>
+              and emp_code = &lt;? value("employee") ?>
+              &lt;? endif ?>
+              and tehead_weekending >= &lt;? value("startDate") ?>
+              and tehead_weekending &lt;= &lt;? value("endDate") ?>
+              &lt;? if exists("excludeClosed") ?>
+              and (COALESCE(tehead_billable_status, 'O')&lt;>'C'
+               or  COALESCE(tehead_payable_status, 'O')&lt;>'C')
+              &lt;? endif ?>
+            group by tehead_id,tehead_number,tehead_weekending,
+                     emp_code,tehead_billable_status,tehead_payable_status
+            union
+            select tehead_id,tehead_number as sheet_number,
+                   tehead_weekending as weekending,
+                   sum(teitem_qty) as hours,emp_code,
+                   sum(teitem_total) as dollars,
+                   tehead_billable_status as billable_status,
+                   tehead_payable_status as payable_status
+            from te.teitem,te.tehead,emp
+            where tehead_id = teitem_tehead_id
+              and emp_id = teitem_emp_id
+              and teitem_type = 'T'
+              &lt;? if exists("employee") ?>
+              and emp_code = &lt;? value("employee") ?>
+              &lt;? endif ?>
+              and tehead_weekending >= &lt;? value("startDate") ?>
+              and tehead_weekending &lt;= &lt;? value("endDate") ?>
+              &lt;? if exists("excludeClosed") ?>
+              and (COALESCE(tehead_billable_status, 'O')&lt;>'C'
+               or  COALESCE(tehead_payable_status, 'O')&lt;>'C')
+              &lt;? endif ?>
+            group by tehead_id,tehead_number,tehead_weekending,
+                     emp_code,tehead_billable_status,tehead_payable_status
+            order by sheet_number) rollup
+      group by tehead_id,sheet_number,weekending,
+               emp_code,billable_status,payable_status
+      order by sheet_number) top
+      ;
+
+</sql>
+ </querysource>
+ <rpthead>
+  <height>131</height>
+  <label>
+   <rect>
+    <x>375</x>
+    <y>98</y>
+    <width>50</width>
+    <height>15</height>
+   </rect>
+   <font>
+    <face>Arial</face>
+    <size>8</size>
+    <weight>normal</weight>
+   </font>
+   <hcenter/>
+   <vcenter/>
+   <string>Extended</string>
+  </label>
+  <text>
+   <rect>
+    <x>747</x>
+    <y>65</y>
+    <width>42</width>
+    <height>12</height>
+   </rect>
+   <bottompad>0</bottompad>
+   <font>
+    <face>Arial</face>
+    <size>8</size>
+    <weight>normal</weight>
+   </font>
+   <left/>
+   <top/>
+   <data>
+    <query></query>
+    <column></column>
+   </data>
+  </text>
+  <label>
+   <rect>
+    <x>10</x>
+    <y>98</y>
+    <width>95</width>
+    <height>15</height>
+   </rect>
+   <font>
+    <face>Arial</face>
+    <size>8</size>
+    <weight>normal</weight>
+   </font>
+   <left/>
+   <vcenter/>
+   <string>Sheet Number</string>
+  </label>
+  <label>
+   <rect>
+    <x>112</x>
+    <y>98</y>
+    <width>83</width>
+    <height>15</height>
+   </rect>
+   <font>
+    <face>Arial</face>
+    <size>8</size>
+    <weight>normal</weight>
+   </font>
+   <hcenter/>
+   <vcenter/>
+   <string>Weekending</string>
+  </label>
+  <label>
+   <rect>
+    <x>295</x>
+    <y>5</y>
+    <width>450</width>
+    <height>37</height>
+   </rect>
+   <font>
+    <face>Arial</face>
+    <size>18</size>
+    <weight>bold</weight>
+   </font>
+   <right/>
+   <vcenter/>
+   <string>Open Sheet List</string>
+  </label>
+  <label>
+   <rect>
+    <x>225</x>
+    <y>98</y>
+    <width>90</width>
+    <height>15</height>
+   </rect>
+   <font>
+    <face>Arial</face>
+    <size>8</size>
+    <weight>normal</weight>
+   </font>
+   <left/>
+   <vcenter/>
+   <string>Employee Code</string>
+  </label>
+  <label>
+   <rect>
+    <x>460</x>
+    <y>98</y>
+    <width>90</width>
+    <height>15</height>
+   </rect>
+   <font>
+    <face>Arial</face>
+    <size>8</size>
+    <weight>normal</weight>
+   </font>
+   <left/>
+   <vcenter/>
+   <string>Invoice Status</string>
+  </label>
+  <line>
+   <xstart>10</xstart>
+   <ystart>130</ystart>
+   <xend>750</xend>
+   <yend>130</yend>
+   <weight>2</weight>
+  </line>
+  <label>
+   <rect>
+    <x>569</x>
+    <y>99</y>
+    <width>90</width>
+    <height>15</height>
+   </rect>
+   <font>
+    <face>Arial</face>
+    <size>8</size>
+    <weight>normal</weight>
+   </font>
+   <left/>
+   <vcenter/>
+   <string>Voucher Status</string>
+  </label>
+ </rpthead>
+ <pghead>
+  <firstpage/>
+  <height>6</height>
+ </pghead>
+ <pghead>
+  <height>36</height>
+  <label>
+   <rect>
+    <x>225</x>
+    <y>15</y>
+    <width>90</width>
+    <height>15</height>
+   </rect>
+   <font>
+    <face>Arial</face>
+    <size>8</size>
+    <weight>normal</weight>
+   </font>
+   <left/>
+   <vcenter/>
+   <string>Employee Code</string>
+  </label>
+  <label>
+   <rect>
+    <x>375</x>
+    <y>15</y>
+    <width>50</width>
+    <height>15</height>
+   </rect>
+   <font>
+    <face>Arial</face>
+    <size>8</size>
+    <weight>normal</weight>
+   </font>
+   <hcenter/>
+   <vcenter/>
+   <string>Extended</string>
+  </label>
+  <label>
+   <rect>
+    <x>10</x>
+    <y>15</y>
+    <width>95</width>
+    <height>15</height>
+   </rect>
+   <font>
+    <face>Arial</face>
+    <size>8</size>
+    <weight>normal</weight>
+   </font>
+   <left/>
+   <vcenter/>
+   <string>Sheet Number</string>
+  </label>
+  <label>
+   <rect>
+    <x>112</x>
+    <y>15</y>
+    <width>75</width>
+    <height>15</height>
+   </rect>
+   <font>
+    <face>Arial</face>
+    <size>8</size>
+    <weight>normal</weight>
+   </font>
+   <hcenter/>
+   <vcenter/>
+   <string>Weekending</string>
+  </label>
+  <line>
+   <xstart>5</xstart>
+   <ystart>30</ystart>
+   <xend>745</xend>
+   <yend>30</yend>
+   <weight>2</weight>
+  </line>
+  <label>
+   <rect>
+    <x>459</x>
+    <y>15</y>
+    <width>90</width>
+    <height>15</height>
+   </rect>
+   <font>
+    <face>Arial</face>
+    <size>8</size>
+    <weight>normal</weight>
+   </font>
+   <left/>
+   <vcenter/>
+   <string>Invoice Status</string>
+  </label>
+  <label>
+   <rect>
+    <x>572</x>
+    <y>16</y>
+    <width>90</width>
+    <height>15</height>
+   </rect>
+   <font>
+    <face>Arial</face>
+    <size>8</size>
+    <weight>normal</weight>
+   </font>
+   <left/>
+   <vcenter/>
+   <string>Voucher Status</string>
+  </label>
+ </pghead>
+ <section>
+  <name>detail</name>
+  <detail>
+   <key>
+    <query>detail</query>
+   </key>
+   <height>31</height>
+   <field>
+    <rect>
+     <x>460</x>
+     <y>0</y>
+     <width>74</width>
+     <height>15</height>
+    </rect>
+    <font>
+     <face>Arial</face>
+     <size>8</size>
+     <weight>bold</weight>
+    </font>
+    <left/>
+    <vcenter/>
+    <data>
+     <query>detail</query>
+     <column>billable_status</column>
+    </data>
+   </field>
+   <field>
+    <rect>
+     <x>226</x>
+     <y>-1</y>
+     <width>105</width>
+     <height>15</height>
+    </rect>
+    <font>
+     <face>Arial</face>
+     <size>8</size>
+     <weight>bold</weight>
+    </font>
+    <left/>
+    <vcenter/>
+    <data>
+     <query>detail</query>
+     <column>emp_code</column>
+    </data>
+   </field>
+   <field>
+    <rect>
+     <x>340</x>
+     <y>0</y>
+     <width>101</width>
+     <height>15</height>
+    </rect>
+    <font>
+     <face>Arial</face>
+     <size>8</size>
+     <weight>bold</weight>
+    </font>
+    <hcenter/>
+    <vcenter/>
+    <data>
+     <query>detail</query>
+     <column>dollars</column>
+    </data>
+   </field>
+   <field>
+    <rect>
+     <x>10</x>
+     <y>0</y>
+     <width>100</width>
+     <height>15</height>
+    </rect>
+    <font>
+     <face>Arial</face>
+     <size>8</size>
+     <weight>bold</weight>
+    </font>
+    <left/>
+    <vcenter/>
+    <data>
+     <query>detail</query>
+     <column>sheet_number</column>
+    </data>
+   </field>
+   <field>
+    <rect>
+     <x>112</x>
+     <y>0</y>
+     <width>100</width>
+     <height>15</height>
+    </rect>
+    <font>
+     <face>Arial</face>
+     <size>8</size>
+     <weight>bold</weight>
+    </font>
+    <hcenter/>
+    <vcenter/>
+    <data>
+     <query>detail</query>
+     <column>weekending</column>
+    </data>
+   </field>
+   <field>
+    <rect>
+     <x>564</x>
+     <y>0</y>
+     <width>74</width>
+     <height>15</height>
+    </rect>
+    <font>
+     <face>Arial</face>
+     <size>8</size>
+     <weight>bold</weight>
+    </font>
+    <left/>
+    <vcenter/>
+    <data>
+     <query>detail</query>
+     <column>payable_status</column>
+    </data>
+   </field>
+  </detail>
+ </section>
+ <pgfoot>
+  <height>16</height>
+  <field>
+   <rect>
+    <x>90</x>
+    <y>0</y>
+    <width>100</width>
+    <height>15</height>
+   </rect>
+   <font>
+    <face>Arial</face>
+    <size>8</size>
+    <weight>bold</weight>
+   </font>
+   <left/>
+   <vcenter/>
+   <data>
+    <query>Context Query</query>
+    <column>report_date</column>
+   </data>
+  </field>
+  <label>
+   <rect>
+    <x>615</x>
+    <y>0</y>
+    <width>85</width>
+    <height>15</height>
+   </rect>
+   <font>
+    <face>Arial</face>
+    <size>8</size>
+    <weight>normal</weight>
+   </font>
+   <right/>
+   <vcenter/>
+   <string>Page:</string>
+  </label>
+  <field>
+   <rect>
+    <x>705</x>
+    <y>0</y>
+    <width>40</width>
+    <height>15</height>
+   </rect>
+   <font>
+    <face>Arial</face>
+    <size>8</size>
+    <weight>bold</weight>
+   </font>
+   <left/>
+   <vcenter/>
+   <data>
+    <query>Context Query</query>
+    <column>page_number</column>
+   </data>
+  </field>
+  <label>
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>85</width>
+    <height>15</height>
+   </rect>
+   <font>
+    <face>Arial</face>
+    <size>8</size>
+    <weight>normal</weight>
+   </font>
+   <right/>
+   <vcenter/>
+   <string>Report Date:</string>
+  </label>
+ </pgfoot>
+</report>

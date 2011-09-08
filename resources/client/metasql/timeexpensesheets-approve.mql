@@ -1,0 +1,6 @@
+-- Group: timeexpensesheets
+-- Name:  approve
+-- Notes: Approve Time Expense Sheet
+UPDATE te.tehead SET 
+  tehead_status = 'A' 
+WHERE (tehead_id=<? value("tehead_id") ?>);

@@ -1,0 +1,11 @@
+-- Group: item
+-- Name:  insteexp
+-- Notes: Insert item expense settings
+INSERT INTO te.teexp (
+  teexp_id,
+  teexp_expcat_id,
+  teexp_accnt_id )
+VALUES (
+  <? value("item_id") ?>,
+  <? value("expcat_id") ?>,
+  <? value("accnt_id") ?>);

@@ -1,0 +1,22 @@
+-- Group: timeexpensesheetitem
+-- Name:  instask
+-- Notes: Insert a default Project Task
+INSERT INTO prjtask
+SELECT
+  nextval('invchead_invchead_id_seq'),
+  <? value("name") ?>,
+  <? value("name") ?>,
+  <? value("name") ?>,
+  <? value("prj_id") ?>,
+  null,
+  'O',
+  0,
+  0,
+  0,
+  0,
+  current_user,
+  <? value("startDate") ?>,
+  null,
+  <? value("startDate") ?>,
+  null,
+  current_user;

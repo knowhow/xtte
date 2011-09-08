@@ -1,0 +1,79 @@
+-- Group: timeexpensesheets
+-- Name:  detail
+-- Notes: Time Expense Sheet List
+SELECT 
+  tehead_id, 
+  tehead_number, 
+  tehead_weekending,
+  tehead_status,
+  emp_code,
+  invoiced,
+  vouchered,
+  posted,
+  SUM(teitem_total) AS total,
+  CASE WHEN (invoiced = 1) THEN <? value("yes") ?>
+       WHEN (invoiced = 0) THEN <? value("no") ?>
+       ELSE <? value("na") ?>
+  END AS invoiced_qtdisplayrole,
+  CASE WHEN (vouchered = 1) THEN <? value("yes") ?>
+       WHEN (vouchered = 0) THEN <? value("no") ?>
+       ELSE <? value("na") ?>
+  END AS vouchered_qtdisplayrole,
+  CASE WHEN (posted = 1) THEN <? value("yes") ?>
+       WHEN (posted = 0) THEN <? value("no") ?>
+       ELSE <? value("na") ?>
+  END AS posted_qtdisplayrole,
+  CASE WHEN (tehead_status='O') THEN 
+    <? value("open") ?> 
+  WHEN (tehead_status='A') THEN
+    <? value("approved") ?> 
+  ELSE <? value("closed") ?>
+  END AS tehead_status_qtdisplayrole,
+  'curr' AS total_xtnumericrole,
+  CASE WHEN (invoiced = -1) THEN 'LightGray'
+       WHEN (invoiced = 0 AND tehead_status = 'A') THEN 'altemphasis'
+  END AS invoiced_qtforegroundrole,
+  CASE WHEN (vouchered = -1) THEN 'LightGray'
+       WHEN (vouchered = 0 AND tehead_status = 'A') THEN 'altemphasis'
+  END AS vouchered_qtforegroundrole,
+  CASE WHEN (posted = -1) THEN 'LightGray'
+       WHEN (posted = 0 AND tehead_status = 'A') THEN 'altemphasis'
+  END AS posted_qtforegroundrole,
+  CASE WHEN (tehead_status = 'O') THEN 'emphasis'
+       WHEN (tehead_status = 'A') THEN 'altemphasis'
+  END AS tehead_status_qtforegroundrole
+<? if exists("includeFormatted") ?> ,
+  formatMoney(SUM(teitem_total)) AS f_total,
+  formatDate(tehead_weekending) AS f_weekending
+<? endif ?>
+FROM (
+  SELECT 
+    tehead_id, 
+    tehead_number, 
+    tehead_weekending,
+    tehead_status,
+    emp_code,
+    COALESCE(teitem_total,0) AS teitem_total,
+    te.sheetstate(tehead_id, 'I') AS invoiced,
+    te.sheetstate(tehead_id, 'V') AS vouchered,
+    te.sheetstate(tehead_id, 'P') AS posted
+  FROM te.tehead
+    LEFT JOIN te.teitem ON (tehead_id=teitem_tehead_id)
+    JOIN emp ON (tehead_emp_id=emp_id)  
+  WHERE ((tehead_weekending >= <? value("startDate") ?> )
+    AND (tehead_weekending <= <? value("endDate") ?> )
+    AND (tehead_status IN (<? literal("statusList") ?>))
+<? if exists("emp_id") ?>
+    AND (tehead_emp_id=<? value("emp_id") ?>)
+<? endif ?>
+)) AS data
+GROUP BY     
+    tehead_id, 
+    tehead_number, 
+    tehead_weekending,
+    tehead_status,
+    emp_code,
+    invoiced,
+    vouchered,
+    posted
+ORDER BY tehead_number;

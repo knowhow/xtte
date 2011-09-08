@@ -1,0 +1,4 @@
+-- Group: timeexpensesheets
+-- Name:  post
+-- Notes: Post Time Expense Sheet
+SELECT te.postSheet(<? value("tehead_id") ?>, <? value("phrase1") ?>, <? value("phrase2") ?>);

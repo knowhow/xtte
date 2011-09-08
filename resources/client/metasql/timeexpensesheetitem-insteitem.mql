@@ -1,0 +1,40 @@
+-- Group: timeexpensesheetitem
+-- Name:  insteitem
+-- Notes: 
+INSERT INTO te.teitem (
+  teitem_tehead_id,
+  teitem_linenumber,
+  teitem_type,
+  teitem_workdate,
+  teitem_cust_id,
+  teitem_po,
+  teitem_item_id,
+  teitem_uom_id,
+  teitem_qty,
+  teitem_rate,
+  teitem_total,
+  teitem_prjtask_id,
+  teitem_billable,
+  teitem_prepaid, 
+  teitem_notes,
+  teitem_curr_id )
+SELECT
+  <? value("teitem_tehead_id") ?>,
+  <? value("teitem_linenumber") ?>,
+  <? value("teitem_type") ?>,
+  <? value("teitem_workdate") ?>,
+  <? value("teitem_cust_id") ?>,
+  <? value("teitem_po") ?>,
+  <? value("teitem_item_id") ?>,
+  item_price_uom_id,
+  <? value("teitem_qty") ?>,
+  <? value("teitem_rate") ?>,
+  <? value("teitem_total") ?>,
+  <? value("teitem_prjtask_id") ?>,
+  <? value("teitem_billable") ?>,
+  <? value("teitem_prepaid") ?>,
+  <? value("teitem_notes") ?>,
+  <? value("teitem_curr_id") ?>
+FROM item
+WHERE (item_id=<? value("teitem_item_id") ?>)
+RETURNING *;

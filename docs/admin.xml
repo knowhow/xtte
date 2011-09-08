@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (c) 1998-2010 by xTuple. All rights reserved. -->
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<chapter>
+  <title>System Administration</title>
+  <para>Before you can begin processing Time and Expense Sheets, you must
+  first set up the system with Expense Items, create Employees, and configure
+  appropriate User Permissions. These activities should be completed by a
+  manager responsible for time and expense―or dedicated information technology
+  professional. In this chapter, we'll cover the following topics:</para>
+  <itemizedlist>
+    <listitem>
+      <para>Setting up Expense Items</para>
+    </listitem>
+    <listitem>
+      <para>Configuring Employees</para>
+    </listitem>
+    <listitem>
+      <para>Configuring User Permissions</para>
+    </listitem>
+  </itemizedlist>
+  <para>Once these configurations are complete, you can begin entering Time
+  and Expense Sheets!</para>
+  <section>
+    <title>Expense Item Setup</title>
+    <para>In order to use items for Project expenses, you need to create or
+    edit existing reference Items and map expense accounts to the General
+    Ledger. To demonstrate how this is done, we will use examples taken from
+    the xTuple demo database. To begin, follow the steps below:</para>
+    <orderedlist>
+      <listitem>
+        <para>Follow this path: <guimenuitem>Products &gt; Item &gt;
+        List...</guimenuitem></para>
+      </listitem>
+      <listitem>
+        <para>Select an existing Reference item, or create a new Reference
+        item. For this example, we'll select the MILEAGE item.</para>
+        <note>
+          <para>The Project tab is only available for reference Item
+          Types.</para>
+        </note>
+      </listitem>
+      <listitem>
+        <para>Select the "Project" tab.</para>
+      </listitem>
+      <listitem>
+        <para>The following screen will appear:</para>
+      </listitem>
+    </orderedlist>
+    <para><screenshot>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="images/expenseItem.png" />
+          </imageobject>
+          <caption>Expense Item Setup</caption>
+        </mediaobject>
+      </screenshot></para>
+    <para>Once the "Allow use as Expense Item on Projects" has been selected,
+    the Project tab provides the ability to select a specific Account or
+    Expense Category.</para>
+    <note>
+      <para>In order to track costs for a Project, an account or category MUST
+      be selected for the Item.</para>
+    </note>
+    <variablelist>
+      <varlistentry>
+        <term>ACCOUNT</term>
+        <listitem>
+          <para>Identify a General Ledger (G/L) Account to be used for
+          expensing Purchasing Expenses to. This is an Expense Account. This
+          Account will be used to create distributions when Vouchering expense
+          lines. The account will be debited when the Voucher is
+          posted.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>EXPENSE CATEGORY</term>
+        <listitem>
+          <para>Identify an Expense Category to distribute Purchasing Expenses
+          to. The Expense Category is used to define a set of General Ledger
+          (G/L) Accounts related to an expense. This Account will be used to
+          create distributions when Vouchering expense lines. The account will
+          be debited when the Voucher is posted.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </section>
+  <section>
+    <title>Configuring Employees</title>
+    <para>Configuring Employees in xTuple is a critical component of the Time
+    and Expense package, since Time Sheets are associated with Employees. Only
+    users who are set up as an Employee and have the correct level of
+    permissions will have the ability to track their time. Again, our example
+    will focus on users found in the xTuple demo database.</para>
+    <orderedlist>
+      <listitem>
+        <para>To get started go to <guilabel>System &gt; Employees &gt;
+        List...</guilabel></para>
+      </listitem>
+      <listitem>
+        <para>The following screen will appear:</para>
+      </listitem>
+    </orderedlist>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="images/employees.png" />
+      </imageobject>
+      <caption>List Employees</caption>
+    </mediaobject>
+    <para>To create a new Employee, simply select the NEW button and enter the
+    required Employee information. The following screen will appear:</para>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="images/employee.png" />
+      </imageobject>
+      <caption>Employee</caption>
+    </mediaobject>
+    <para>The first information you will be asked to enter is the Contact
+    information for the Employee. If that information already exists, you can
+    look it up and add it from this screen. Or if it does not already exist,
+    then you can manually enter the information now.</para>
+    <para>In order to create Vouchers to compensate Employees for expenses
+    performed according to their Time Sheets, the Employee must be selected as
+    a Vendor. Click on the "Detail" tab and select the "Vendor" option, as
+    shown in the next screenshot:</para>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="images/employeevendor.png" />
+      </imageobject>
+      <caption>Employee Vendor</caption>
+    </mediaobject>
+    <para>Once you have indicated you want to link the Employee to a Vendor
+    record, select the VENDOR button. This will launch the Vendor screen,
+    where you can enter detailed Vendor information.</para>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="images/employeevendor2.png" />
+      </imageobject>
+      <caption>Vendor Information</caption>
+    </mediaobject>
+    <para>Getting back to the Employee screen, select the "Financial" tab to
+    enter financial information. Keep in mind that in order to track the cost
+    of Employee time as an expense, the Employee must NOT be flagged as a
+    Contractor and the compensation field must have a value of zero.</para>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="images/contractor.png" />
+      </imageobject>
+      <caption>Employee Financial</caption>
+    </mediaobject>
+    <para>Once you have finished entering Employee information, you are ready
+    to assign permissions.</para>
+  </section>
+  <section id="configurePermissions">
+    <title>Configuring User Permissions</title>
+    <para>xTuple ERP has the powerful ability to manage user permissions,
+    enabling you to allow or disallow access to various functional areas of
+    the system. For example, a clerk may enter time and expense, while a
+    manager may have the ability to approve entries.</para>
+    <para>There are several options available to you when managing system
+    users. You can either A) assign individual permissions to users B) create
+    preconfigured groups of permissions and assign individuals to these groups
+    or C) a combination of A and B.</para>
+    <para>The following path will get you to the screen for maintaining system
+    users: <guimenuitem>System &gt; Maintain Users</guimenuitem>.</para>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="images/tepermissions.png" />
+      </imageobject>
+      <caption>List Users</caption>
+    </mediaobject>
+    <para>In this scenario, let's say we have a new Employee whose permissions
+    we want to review. To begin, follow these steps:</para>
+    <orderedlist>
+      <listitem>
+        <para>Highlight the user whose permissions we want to review</para>
+      </listitem>
+      <listitem>
+        <para>Select the EDIT button (or double-click on the user)</para>
+      </listitem>
+      <listitem>
+        <para>The following screen will appear:</para>
+      </listitem>
+    </orderedlist>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="images/tepermissions2.png" />
+      </imageobject>
+      <caption>User Privileges</caption>
+    </mediaobject>
+    <para>As you can see, the basic user information—such as name and email
+    address—has already been entered. The user has the ability to enter their
+    own time and expenses, which you can see under the "Granted Privileges"
+    section. We can add or remove privileges (by module) simply by selecting a
+    specific privilege, and then choosing either the ADD or REVOKE
+    button.</para>
+    <tip>
+      <para>Use the ADD ALL and REVOKE ALL buttons to move all the privileges
+      at once for the specified module</para>
+    </tip>
+    <para>The user role feature makes it easy to define logical sets of
+    privileges defined according to standard job roles. The following path
+    takes you to the screen for defining role privileges: <guimenuitem>System
+    &gt; Maintain Roles</guimenuitem>. More information regarding Role setup,
+    please consult the <ulink
+    url="http://www.xtuple.org/docs/reference-guide">xTuple ERP Reference
+    Guide</ulink>.</para>
+    <tip>
+      <para>Time and Expense entry is closely integrated with Projects and
+      Tasks. Users that are granted privileges to Time and Expense entry
+      should also be granted MaintainProjects and ViewProjects in the CRM
+      module.</para>
+    </tip>
+  </section>
+</chapter>

@@ -1,0 +1,6 @@
+-- Group: customer
+-- Name:  seltecustrate
+-- Notes: Select Default Customer Project Info
+SELECT *
+FROM te.tecustrate
+WHERE (tecustrate_cust_id=<? value("cust_id") ?>);

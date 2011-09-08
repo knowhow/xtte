@@ -1,0 +1,8 @@
+-- Group: project
+-- Name:  updteprj
+-- Notes: Update project time expense
+UPDATE te.teprj SET
+  teprj_cust_id=<? value("cust_id") ?>,
+  teprj_rate=<? value("rate") ?>,
+  teprj_curr_id=<? value("curr_id") ?>
+WHERE (teprj_id=<? value("teprj_id") ?>);

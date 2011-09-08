@@ -1,0 +1,14 @@
+-- Group: project
+-- Name:  formatdates
+-- Notes: Formats Dates for jsGantt
+SELECT
+  EXTRACT('day' FROM start_date) || '/' || 
+  EXTRACT('month' FROM start_date) || '/' || 
+  EXTRACT('year' FROM start_date)  AS start_date,
+  EXTRACT('day' FROM due_date) || '/' || 
+  EXTRACT('month' FROM due_date) || '/' || 
+  EXTRACT('year' FROM due_date)  AS due_date
+FROM (
+  SELECT COALESCE(<? value("startDate") ?>,<? value("dueDate") ?>)::date AS start_date,
+  <? value("dueDate") ?>::date AS due_date
+) data

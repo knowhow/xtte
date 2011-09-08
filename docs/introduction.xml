@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (c) 1998-2010 by xTuple. All rights reserved. -->
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<preface>
+  <title>Introduction</title>
+  <section>
+    <title>Product Overview</title>
+    <para>Project Management requires the ability to account for the hours and
+    expenses related to a Project. While these capabilities are critical to
+    Project Management, they're even more important to a business operating in
+    the Service industry. Manufacturing companies have had many tools
+    available for product costing and profitability reporting for decades. The
+    Time and Expense extension delivers a comparable level of reporting
+    required by services businesses.</para>
+    <para>Time and Expense provides service-based functionality on top of the
+    foundation of xTuple ERP. In addition to the features found in Time and
+    Expense, you also have access to the full range of advanced ERP
+    features&mdash;such as accounting, inventory management, and Customer
+    relationship management (CRM).</para>
+    <para>Here are just a few real world examples of how Time and Expense can
+    help you:</para>
+    <variablelist>
+      <varlistentry>
+        <term>Budget management by Project and Task</term>
+        <listitem>
+          <para>Time and Expense will enable you to report budget vs actual
+          information for a Project and Task. Requiring hours and expenses to
+          be assigned to a Project and Task can greatly enhance your ability
+          to manage costs and Project margins.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Improved Cash Flow</term>
+        <listitem>
+          <para>Capturing service billing in a routine manner allows for
+          faster invoicing. The ability to enter detailed notes on each time
+          or expense line provides supporting documentation, which fosters
+          better communication and faster cash receipts.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Enhanced Expense Management</term>
+        <listitem>
+          <para>Employees can enter expenses and associate them to a Project.
+          A manager can then use the Approval process once they've reviewed
+          the entries. Expenses can then be automatically vouchered and a
+          payment processed.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <para>This Time and Expense Product Guide will walk you through the
+    process of installing, configuring, and using Time and Expense for your
+    service billing and expense reporting needs.</para>
+  </section>
+  <section>
+    <title>Choosing an xTuple ERP Edition</title>
+    <para>Time and Expense is available for use by all three xTuple ERP
+    editions: PostBooks, Standard, and Manufacturing. This means you will have
+    full-scale ERP functionality underlying your Time and Expense
+    installation.</para>
+    <para>If you are uncertain which xTuple ERP edition is the right one for
+    you, our sales staff would be happy to help you make your decision. To
+    contact us, simply send an email requesting more information to <ulink
+    url="mailto:sales@xtuple.com">sales@xtuple.com</ulink>.</para>
+  </section>
+  <section>
+    <title>Open Source Software: What is it and what does it mean to
+    me?</title>
+    <para>By now you may have heard some buzz about open source
+    software&mdash;and you're not sure what to make of it. It may even sound
+    like a bunch of technical jargon used to impress IT professionals, which
+    may or may not apply to yourself. This is all the more reason why we want
+    to provide you with a little insight into what open source software is and
+    what it means to you.</para>
+    <para>In a nutshell, open source software provides users with access to
+    software source code. By source code, we mean the programming files that
+    form the basis for a software product. Open source software is different
+    from closed source software, in that closed source software locks up its
+    source code and hides it from end users. Traditionally, closed source
+    software has been the more common form of commercial "boxed" software
+    products that you would pick up at your local office store. A result of
+    the open source movement has been several licensing and distribution
+    models:</para>
+    <variablelist>
+      <varlistentry>
+        <term>Community license</term>
+        <listitem>
+          <para>Applications are free to anyone and developed as Projects in
+          large groups based on public input.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Dual license</term>
+        <listitem>
+          <para>A combination of free and commercial applications. A company
+          may provide some software tools that are free to the public, while
+          others are sold commercially.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Shared source license</term>
+        <listitem>
+          <para>Commercial software where the source code may be viewed;
+          however, there is no ability to make changes to the code.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <note>
+      <para>xTuple software generally falls under the second category: "dual
+      license." That's because we offer both free and commercial applications,
+      with our source code available for review and change.</para>
+    </note>
+    <para>Still wondering what all this means to you? Well, what it means is
+    that the software we've created has grown based on direct feedback from
+    YOU, our user community - whether you're a paying Customer or not.</para>
+    <para>At xTuple, we don't hide our work from public scrutiny. Rather, we
+    present our work for all to see. We do this to promote shared insight into
+    how we can continue to improve the software to make your job easier. In
+    fact, on the xTuple community website we encourage you to provide direct
+    feedback regarding bugs you've found or features you may find useful in
+    the future. We also invite you to share your success stories and tips and
+    tricks. In this way, you can reach out and help other xTuple community
+    members.</para>
+    <para>And, If you are an IT professional and a bit of a code jockey, you
+    can even make changes to the source code on your local copy. Many of our
+    greatest enhancements have been sponsored by our Customers&mdash;and these
+    changes have been rolled into the final product so that other users can
+    benefit from the improvements. This means our tools and products are not
+    designed solely by xTuple engineers. They are also designed by the people
+    who use them everyday. We at xTuple encourage you to learn more about the
+    community and get involved on the <ulink
+    url="www.xtuple.org">xTuple.org</ulink> website. Rather than quietly
+    grumbling to yourself about things you think could be better, reach out to
+    fellow community members to find out how to make these changes
+    happen!</para>
+  </section>
+  <section>
+    <title>xTuple Application Architecture</title>
+    <para>The xTuple applications are designed on a two-tier system:</para>
+    <itemizedlist>
+      <listitem>
+        <para>Graphical client built using the open source Qt development
+        framework</para>
+      </listitem>
+      <listitem>
+        <para>Database server running on the open source PostgreSQL
+        database</para>
+      </listitem>
+    </itemizedlist>
+    <para>All of the xTuple business logic resides in the database, so there
+    is no middle tier (i.e., Java/application server). And the client is
+    "thin": since Qt and the PostgreSQL database are cross-platform solutions,
+    the application can be installed on Mac, Windows, or Linux
+    machines&mdash;in any combination you prefer.</para>
+    <para>Installation of xTuple is easy and painless. Once you download the
+    software, you then run the xTuple graphical client out of the directory it
+    resides in. The same xTuple client can connect to a database for any of
+    the xTuple ERP editions: PostBooks, Standard, or Manufacturing. Upgrading
+    from one edition to the next involves little more than running a
+    two-minute script on your database. The simplicity of the upgrade process
+    illustrates the point that xTuple maintains a single code base for all of
+    its ERP editions. Doing so enables our community of open source users to
+    share and work together in one online hub for all the xTuple
+    products.</para>
+    <para>There are several layers of security available with xTuple ERP. You
+    can utilize a Secure Sockets Layer (SSL) connection, and you can also
+    enable an enhanced authentication mechanism which scrambles your users'
+    passwords. In addition, you can also assign individual privileges with the
+    system in as much detail as you see fit for your operation.</para>
+  </section>
+</preface>

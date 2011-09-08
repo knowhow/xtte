@@ -1,0 +1,15 @@
+-- Group: task
+-- Name:  insteprjtask
+-- Notes: Insert task time expense record
+INSERT INTO te.teprjtask (
+  teprjtask_prjtask_id,
+  teprjtask_cust_id,
+  teprjtask_rate,
+  teprjtask_curr_id,
+  teprjtask_item_id )
+VALUES (
+  <? value("prjtask_id") ?>,
+  <? value("cust_id") ?>,
+  <? value("rate") ?>,
+  <? value("curr_id") ?>,
+  <? value("item_id") ?> );

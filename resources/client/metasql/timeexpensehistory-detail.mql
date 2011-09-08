@@ -1,0 +1,108 @@
+-- Group: timeexpensehistory
+-- Name:  detail
+-- Notes: 
+SELECT
+  teitem.*,
+  item_number, item_descrip1,
+  cust_number, cust_name,
+  tehead.*, tehead_number || '-' || teitem_linenumber::text AS f_sheet_number,
+  emp_code,
+  prj_number, prj_name,
+  prjtask_number, prjtask_name,
+  CASE WHEN (tehead_status='O') THEN 
+    <? value("open") ?> 
+  WHEN (tehead_status='A') THEN
+    <? value("approved") ?> 
+  ELSE <? value("closed") ?>
+  END AS tehead_status_qtdisplayrole,
+  CASE WHEN (teitem_type='T') THEN
+    <? value("time") ?>
+       WHEN (teitem_type='E') THEN
+    <? value("expense") ?>
+       ELSE
+    <? value("error") ?>
+  END AS teitem_type_qtdisplayrole,
+<? if exists("timeOnly") ?>
+  '0' AS teitem_qty_xttotalrole,
+<? endif ?>
+<? if exists("expenseOnly") ?>
+  '0' AS teitem_total_xttotalrole,
+<? endif ?>
+<? if exists("includeFormatted") ?>
+  formatQty(teitem_qty) AS f_qty,
+  formatSalesPrice(teitem_rate) AS f_rate,
+  formatBoolYN(teitem_billable) AS f_billable,
+  formatExtPrice(teitem_total) AS f_total,
+  formatDate(teitem_workdate) AS f_workdate,
+<? endif ?>
+  'qty' AS teitem_qty_xtnumericrole,
+  'salesprice' AS teitem_rate_xtnumericrole,
+  'extprice' AS teitem_total_xtnumericrole
+FROM te.tehead
+  JOIN te.teitem ON (tehead_id = teitem_tehead_id)
+  JOIN emp ON (tehead_emp_id= emp_id)
+  JOIN item ON (teitem_item_id = item_id)
+  JOIN classcode ON (item_classcode_id=classcode_id)
+  LEFT OUTER JOIN cust ON (teitem_cust_id=cust_id)
+<? if exists("custtype_pattern") ?>
+  JOIN custtype ON (cust_custtype_id=custtype_id)
+<? endif ?>
+  JOIN prjtask ON (teitem_prjtask_id=prjtask_id)
+  JOIN prj ON (prjtask_prj_id=prj_id)
+<? if exists("custgrp_id") ?>
+  JOIN custgrpitem ON (custgrpitem_cust_id=cust_id)
+<? endif ?>
+<? if exists("empgrp_id") ?>
+  JOIN empgrpitem ON (empgrpitem_emp_id=emp_id)
+<? endif ?>
+<? if exists("itemgrp_id") ?>
+  JOIN itemgrpitem ON (itemgrpitem_item_id=item_id)
+<? endif ?>
+WHERE (true
+<? if exists("startDate") ?>
+  AND (teitem_workdate >= <? value("startDate") ?>)
+<? endif ?>
+<? if exists("endDate") ?>
+  AND (teitem_workdate <= <? value("endDate") ?>)
+<? endif ?>
+<? if exists("timeOnly") ?>
+  AND (teitem_type = 'T')
+<? endif ?>
+<? if exists("expenseOnly") ?>
+  AND (teitem_type = 'E')
+<? endif ?>
+<? if exists("prj_id") ?>
+  AND (prj_id = <? value("prj_id") ?>)
+<? endif ?>
+<? if exists("cust_id") ?>
+  AND (cust_id = <? value("cust_id") ?>)
+<? endif ?>
+<? if exists("custtype_id") ?>
+  AND (cust_custtype_id = <? value("custtype_id") ?>)
+<? endif ?>
+<? if exists("custtype_pattern") ?>
+  AND (custtype_code ~* <? value("custtype_pattern") ?>)
+<? endif ?>
+<? if exists("custgrp_id") ?>
+  AND   (custgrpitem_custgrp_id=<? value("custgrp_id") ?>)
+<? endif ?>
+<? if exists("emp_id") ?>
+  AND (emp_id = <? value("emp_id") ?>)
+<? endif ?>
+<? if exists("empgrp_id") ?>
+  AND   (empgrpitem_empgrp_id=<? value("empgrp_id") ?>)
+<? endif ?>
+<? if exists("item_id") ?>
+  AND (item_id = <? value("item_id") ?>)
+<? endif ?>
+<? if exists("itemgrp_id") ?>
+  AND   (itemgrpitem_itemgrp_id=<? value("itemgrp_id") ?>)
+<? endif ?>
+<? if exists("classcode_id") ?>
+  AND (classcode_id = <? value("classcode_id") ?>)
+<? endif ?>
+<? if exists("classcode_pattern") ?>
+  AND (classcode_code ~* <? value("classcode_pattern") ?>)
+<? endif ?>
+) 
+ORDER BY tehead_number, teitem_linenumber;

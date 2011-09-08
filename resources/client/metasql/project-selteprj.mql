@@ -1,0 +1,8 @@
+-- Group: project
+-- Name:  selteprj
+-- Notes: Select Default Project Time Expense Info
+SELECT COALESCE(teprj_cust_id,-1) AS cust_id,
+  COALESCE(teprj_curr_id,-1) AS curr_id,
+  *
+FROM te.teprj
+WHERE (teprj_prj_id=<? value("prj_id") ?>);

@@ -1,0 +1,251 @@
+<package id="from_110"
+         name="te"
+         developer="xTuple"
+         descrip="Time and Expense System"
+         version="2.0.0beta"
+         updater="2.2.2">
+  <pkgnotes>Time and Expense System Lite add-on package for xTuple ERP.
+
+        This file is part of the te package for xTuple ERP: PostBooks Edition,
+        a free and open source Enterprise Resource Planning software suite,
+        Copyright (c) 1999-2010 by OpenMFG LLC, d/b/a xTuple.
+        It is licensed to you under the Common Public Attribution License
+        version 1.0, the full text of which (including xTuple-specific Exhibits)
+        is available at www.xtuple.com/CPAL.  By using this software, you agree
+        to be bound by its terms.
+  </pkgnotes>
+
+  <prerequisite type="Query"
+                name="xTuple ERP version">
+    <query>
+      SELECT (fetchMetricText('ServerVersion') >= '3.6.0');
+    </query>
+    <message>
+      This version of the te package only works with xTuple ERP
+      versions 3.6.0 and greater.
+    </message>
+  </prerequisite>
+
+  <prerequisite type="Query"
+                name="Ensure correct Time and Expense package version exists" >
+    <query>
+      SELECT COUNT(*) = 1
+      FROM (SELECT *
+            FROM pkghead
+            WHERE (pkghead_name = 'te')
+            AND (pkghead_version = '1.0.9') ) AS dummy;
+    </query>
+    <message>
+      xTuple Time and Expense 1.0.9 must be installed to run this upgrade.
+    </message>
+  </prerequisite>
+
+  <prerequisite type="Query"
+                name="Check Time and Expense sheet status" >
+    <query>
+      -- Need a special function to deal with lite and pro differences
+      CREATE FUNCTION te.precheck() RETURNS boolean AS $$
+      BEGIN
+        IF (EXISTS(SELECT attname
+               FROM pg_attribute
+               WHERE attrelid=(SELECT oid FROM pg_class WHERE relname='tehead')
+               AND attname='tehead_status')) THEN
+          IF (SELECT (count(*) != 0)
+              FROM te.tehead 
+                JOIN te.teitem ON (tehead_id=teitem_tehead_id)
+              WHERE tehead_status IS NULL) THEN
+            RETURN false;
+          END IF;
+        ELSE
+          IF (SELECT (count(*) != 0) 
+              FROM te.tehead 
+                JOIN te.teitem ON (tehead_id=teitem_tehead_id)
+              WHERE (COALESCE(tehead_billable_status, 'O') != 'C' 
+                     OR COALESCE(tehead_payable_status, 'O') != 'C')) THEN
+            RETURN false;
+          END IF;
+        END IF;   
+
+        RETURN true;
+      END;
+      $$ LANGUAGE 'plpgsql';
+
+      SELECT te.precheck();
+    </query>
+    <message>
+      You must process all Time and Expense sheets before upgrading.
+    </message>
+  </prerequisite>
+
+  <prerequisite type="Query"
+                name="Clean up precheck" >
+    <query>
+      SELECT dropIfExists('FUNCTION','precheck()','te');
+    </query>
+
+  </prerequisite>
+
+  <prerequisite type="license" name="xTuple Concise EULA">
+    <message>
+      &lt;p>
+          This file is part of the xttelite package for xTuple ERP: PostBooks Edition,
+          a free and open source Enterprise Resource Planning software suite,
+          Copyright (c) 1999-2009 by OpenMFG LLC, d/b/a xTuple.
+          It is licensed to you under the Common Public Attribution License
+          version 1.0, the full text of which (including xTuple-specific Exhibits)
+          is available at www.xtuple.com/CPAL.  By using this software, you agree
+          to be bound by its terms.
+      &lt;/p>
+    </message>
+  </prerequisite>
+    
+  <loadpriv name="MaintainTimeExpenseOthers" module="TE">
+   Allowed to Maintain Time/Exp Sheets for all users
+  </loadpriv>
+
+  <loadpriv name="MaintainTimeExpenseSelf" module="TE">
+   Allowed to Maintain Time/Exp Sheets
+  </loadpriv>
+
+  <loadpriv name="MaintainTimeExpense" module="TE">
+   Allowed to Maintain Time/Exp Sheets
+  </loadpriv>
+
+  <loadpriv name="CanViewRates" module="TE">
+   Allowed to view rates in the Time Entries
+  </loadpriv>
+  
+  <loadpriv name="CanApprove" module="TE">
+   Allowed to Approve Time/Exp Sheets
+  </loadpriv>
+    
+  <loadpriv name="allowInvoicing" module="TE">
+   Allowed to Invoice Time/Exp Sheets
+  </loadpriv>
+    
+  <loadpriv name="allowVouchering" module="TE">
+   Allowed to Voucher Time/Exp Sheets
+  </loadpriv>
+
+  <loadpriv name="PostTimeSheets" module="TE">
+   Allowed to Post Time Sheets
+  </loadpriv>
+
+  <loadpriv name="ViewTimeExpenseHistory" module="TE">
+   Allowed to view Time Expense Sheet history
+  </loadpriv>
+
+  <createfunction file="database/functions/calcrate.sql"    name="calcrate">Time and Expense package</createfunction>
+  <createfunction file="database/functions/copyitem.sql"    name="copyitem">Time and Expense package</createfunction>
+  <createfunction file="database/functions/invoicesheets.sql"    name="invoicesheets">Time and Expense package</createfunction>
+  <createfunction file="database/functions/postsheet.sql"    name="postsheet">Time and Expense package</createfunction>
+  <createfunction file="database/functions/sheetstate.sql"    name="sheetstate">Time and Expense package</createfunction>
+  <createfunction file="database/functions/unnest.sql"    name="unnest">Time and Expense package</createfunction>
+  <createfunction file="database/functions/vouchersheet.sql"    name="vouchersheet">Time and Expense package</createfunction>
+
+  <createtable file="database/tables/createteemp.sql"           name="teemp"/>
+
+  <createtrigger name="teheadtrigger" file="database/triggers/tehead.sql">Time and Expense Package</createtrigger>
+  <createtrigger name="teitemtrigger" file="database/triggers/teitem.sql">Time and Expense Package</createtrigger>
+  <createtrigger name="teprjtrigger" file="database/triggers/teprj.sql">Time and Expense Package</createtrigger>
+
+  <loadappscript  file="client/scripts/configureCRM.js" name="configureCRM" order="0">Time and Expense package</loadappscript>
+  <loadappscript  file="client/scripts/customer.js" name="customer" order="0">Time and Expense package</loadappscript>
+  <loadappscript  file="client/scripts/dspTimeExpenseHistory.js" name="dspTimeExpenseHistory" order="0">Time and Expense package</loadappscript>
+  <loadappscript  file="client/scripts/employee.js" name="employee" order="0">Time and Expense package</loadappscript>
+  <loadappscript  file="client/scripts/initMenu.js" name="initMenu" order="0">Time and Expense package</loadappscript>
+  <loadappscript  file="client/scripts/item.js" name="item" order="0">Time and Expense package</loadappscript>
+  <loadappscript  file="client/scripts/jsGantt.js" name="jsGantt" order="0">Time and Expense package</loadappscript>
+  <loadappscript  file="client/scripts/jsGanttCSS.js" name="jsGanttCSS" order="0">Time and Expense package</loadappscript>
+  <loadappscript  file="client/scripts/projectGantt.js" name="projectGantt" order="0">Time and Expense package</loadappscript>
+  <loadappscript  file="client/scripts/project.js" name="project" order="0">Time and Expense package</loadappscript>
+  <loadappscript  file="client/scripts/task.js" name="task" order="0">Time and Expense package</loadappscript>
+  <loadappscript  file="client/scripts/tebilling.js" name="tebilling" order="0">Time and Expense package</loadappscript> 
+  <loadappscript  file="client/scripts/timeExpenseSheet.js" name="timeExpenseSheet" order="0">Time and Expense package</loadappscript>
+  <loadappscript  file="client/scripts/timeExpenseSheetItem.js" name="timeExpenseSheetItem" order="0">Time and Expense package</loadappscript>
+  <loadappscript  file="client/scripts/timeExpenseSheets.js" name="timeExpenseSheets" order="0">Time and Expense package</loadappscript>
+  <loadappscript  file="client/scripts/xtte.js" name="xtte" order="0">Time and Expense package</loadappscript> 
+  
+  <loadappui      file="client/uiforms/dspTimeExpenseHistory.ui">Time and Expense package</loadappui>
+  <loadappui      file="client/uiforms/projectGantt.ui">Time and Expense package</loadappui>
+  <loadappui      file="client/uiforms/tebilling.ui">Time and Expense package</loadappui>
+  <loadappui      file="client/uiforms/tecustomer.ui">Time and Expense package</loadappui>
+  <loadappui      file="client/uiforms/teexpense.ui">Time and Expense package</loadappui>
+  <loadappui      file="client/uiforms/timeExpenseSheet.ui">Time and Expense package</loadappui>
+  <loadappui      file="client/uiforms/timeExpenseSheetItem.ui">Time and Expense package</loadappui>
+  <loadappui      file="client/uiforms/timeExpenseSheets.ui">Time and Expense package</loadappui>
+  
+  <loadmetasql file="client/metasql/customer-deltecustrate.mql">Time and Expense package</loadmetasql>
+  <loadmetasql file="client/metasql/customer-instecustrate.mql">Time and Expense package</loadmetasql>
+  <loadmetasql file="client/metasql/customer-seltecustrate.mql">Time and Expense package</loadmetasql>
+  <loadmetasql file="client/metasql/customer-updtecustrate.mql">Time and Expense package</loadmetasql>
+  <loadmetasql file="client/metasql/employee-insteemp.mql">Time and Expense package</loadmetasql>
+  <loadmetasql file="client/metasql/employee-selteemp.mql">Time and Expense package</loadmetasql>
+  <loadmetasql file="client/metasql/employee-updteemp.mql">Time and Expense package</loadmetasql>
+  <loadmetasql file="client/metasql/item-delteexp.mql">Time and Expense package</loadmetasql>
+  <loadmetasql file="client/metasql/item-insteexp.mql">Time and Expense package</loadmetasql>
+  <loadmetasql file="client/metasql/item-selteexp.mql">Time and Expense package</loadmetasql>
+  <loadmetasql file="client/metasql/item-updteexp.mql">Time and Expense package</loadmetasql>
+  <loadmetasql file="client/metasql/project-formatdates.mql">Time and Expense package</loadmetasql>
+  <loadmetasql file="client/metasql/project-insteprj.mql">Time and Expense package</loadmetasql>
+  <loadmetasql file="client/metasql/project-selteprj.mql">Time and Expense package</loadmetasql>
+  <loadmetasql file="client/metasql/project-updteprj.mql">Time and Expense package</loadmetasql>
+  <loadmetasql file="client/metasql/projectGantt-getprj.mql">Time and Expense package</loadmetasql>
+  <loadmetasql file="client/metasql/projectGantt-jsGantt.mql">Time and Expense package</loadmetasql>
+  <loadmetasql file="client/metasql/projectGantt-jsganttcss.mql">Time and Expense package</loadmetasql>
+  <loadmetasql file="client/metasql/projectGantt-tasks.mql">Time and Expense package</loadmetasql>
+  <loadmetasql file="client/metasql/task-insteprjtask.mql">Time and Expense package</loadmetasql>
+  <loadmetasql file="client/metasql/task-selteprjtask.mql">Time and Expense package</loadmetasql>
+  <loadmetasql file="client/metasql/task-updteprjtask.mql">Time and Expense package</loadmetasql>
+  <loadmetasql file="client/metasql/timeexpensehistory-detail.mql">Time and Expense package</loadmetasql>
+  <loadmetasql file="client/metasql/timeexpensesheet-deltehead.mql">Time and Expense package</loadmetasql>
+  <loadmetasql file="client/metasql/timeexpensesheet-delteitem.mql">Time and Expense package</loadmetasql>
+  <loadmetasql file="client/metasql/timeexpensesheet-detail.mql">Time and Expense package</loadmetasql>
+  <loadmetasql file="client/metasql/timeexpensesheet-header.mql">Time and Expense package</loadmetasql>
+  <loadmetasql file="client/metasql/timeexpensesheet-instehead.mql">Time and Expense package</loadmetasql>
+  <loadmetasql file="client/metasql/timeexpensesheet-updtehead.mql">Time and Expense package</loadmetasql>
+  <loadmetasql file="client/metasql/timeexpensesheetitem-detail.mql">Time and Expense package</loadmetasql>
+  <loadmetasql file="client/metasql/timeexpensesheetitem-emptotals.mql">Time and Expense package</loadmetasql>
+  <loadmetasql file="client/metasql/timeexpensesheetitem-getcustinfo.mql">Time and Expense package</loadmetasql>
+  <loadmetasql file="client/metasql/timeexpensesheetitem-gettask.mql">Time and Expense package</loadmetasql>
+  <loadmetasql file="client/metasql/timeexpensesheetitem-getterate.mql">Time and Expense package</loadmetasql>
+  <loadmetasql file="client/metasql/timeexpensesheetitem-instask.mql">Time and Expense package</loadmetasql>
+  <loadmetasql file="client/metasql/timeexpensesheetitem-insteitem.mql">Time and Expense package</loadmetasql>
+  <loadmetasql file="client/metasql/timeexpensesheetitem-nextlinenum.mql">Time and Expense package</loadmetasql>
+  <loadmetasql file="client/metasql/timeexpensesheetitem-taskbudg.mql">Time and Expense package</loadmetasql>
+  <loadmetasql file="client/metasql/timeexpensesheetitem-taskdefaults.mql">Time and Expense package</loadmetasql>
+  <loadmetasql file="client/metasql/timeexpensesheetitem-taskrollup.mql">Time and Expense package</loadmetasql>
+  <loadmetasql file="client/metasql/timeexpensesheetitem-teitemnext.mql">Time and Expense package</loadmetasql>
+  <loadmetasql file="client/metasql/timeexpensesheetitem-teitemprev.mql">Time and Expense package</loadmetasql>
+  <loadmetasql file="client/metasql/timeexpensesheetitem-updteitem.mql">Time and Expense package</loadmetasql>
+  <loadmetasql file="client/metasql/timeexpensesheets-approve.mql">Time and Expense package</loadmetasql>
+  <loadmetasql file="client/metasql/timeexpensesheets-close.mql">Time and Expense package</loadmetasql>
+  <loadmetasql file="client/metasql/timeexpensesheets-detail.mql">Time and Expense package</loadmetasql>
+  <loadmetasql file="client/metasql/timeexpensesheets-invoice.mql">Time and Expense package</loadmetasql>
+  <loadmetasql file="client/metasql/timeexpensesheets-post.mql">Time and Expense package</loadmetasql>
+  <loadmetasql file="client/metasql/timeexpensesheets-unapprove.mql">Time and Expense package</loadmetasql>
+  <loadmetasql file="client/metasql/timeexpensesheets-voucher.mql">Time and Expense package</loadmetasql>
+
+  <loadreport file="client/reports/TimeExpenseHistory.xml">Time and Expense package</loadreport>
+  <loadreport file="client/reports/TimeExpenseSheet.xml">Time and Expense package</loadreport>
+  <loadreport file="client/reports/TimeExpenseSheets.xml">Time and Expense package</loadreport>
+
+  <finalscript file="from_109/createtehead.sql"  />
+  <finalscript file="from_109/createteitem.sql"  />
+
+  <finalscript file="alterTecustrate.sql"  />
+  <finalscript file="alterTeemprate.sql"  />
+  <finalscript file="alterTehead.sql"  />
+  <finalscript file="alterTeitem.sql"  />
+  <finalscript file="alterTeprj.sql"  />
+  <finalscript file="alterTeprjtask.sql"  />
+  <finalscript file="dropFunctions.sql"  />
+  <finalscript file="dropMetasql.sql"  />
+  <finalscript file="dropScripts.sql"  />
+  <finalscript file="dropTemetric.sql"  />
+  <finalscript file="dropTeselect.sql"  />
+  <finalscript file="dropUiforms.sql"  />
+  <finalscript file="deleteScripts.sql"  />
+  <finalscript file="dropVoucher.sql"  />
+  
+</package>

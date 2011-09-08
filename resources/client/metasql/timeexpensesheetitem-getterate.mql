@@ -1,0 +1,53 @@
+-- Group: timeexpensesheetitem
+-- Name:  getterate
+-- Notes: Get billing rate for Time Expense Item
+
+SELECT COALESCE(rate,0) AS rate 
+FROM (
+<? if exists("time") ?>
+-- Project Task Rate
+SELECT teprjtask_rate AS rate, 
+  teprjtask_curr_id AS curr_id,
+  10 AS seq 
+FROM te.teprjtask
+WHERE ((teprjtask_prjtask_id = <? value("task_id") ?>)
+  AND (teprjtask_curr_id IS NOT NULL))
+UNION
+
+-- Project Rate
+SELECT teprj_rate AS rate, 
+  teprj_curr_id AS curr_id,
+  20 AS seq
+FROM te.teprj
+WHERE ((teprj_prj_id = <? value("prj_id") ?>)
+  AND (teprj_curr_id IS NOT NULL))
+UNION
+
+-- Employee Rate
+SELECT emp_extrate AS rate, 
+  baseCurrId() AS curr_id,
+  30 AS seq
+FROM emp
+WHERE ((emp_id = <? value("emp_id") ?>)
+ AND (emp_extrate > 0))
+UNION
+
+-- Customer Rate
+SELECT tecustrate_rate as rate, 
+  tecustrate_curr_id,
+  40 AS seq
+FROM te.tecustrate
+WHERE ((tecustrate_cust_id = <? value("cust_id") ?>)
+  AND (tecustrate_curr_id IS NOT NULL))
+UNION
+<? endif ?>
+
+-- Item List Price
+SELECT item_listprice as rate, 
+  baseCurrId(),
+  50 AS seq
+FROM item
+WHERE (item_id = <? value("item_id") ?>)
+) AS rates
+ORDER BY seq
+LIMIT 1;

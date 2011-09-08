@@ -1,0 +1,6 @@
+-- Group: employee
+-- Name:  updteemp
+-- Notes: Update employee time expense
+UPDATE te.teemp SET
+  teemp_contractor=<? value("contractor") ?>
+WHERE (teemp_id=<? value("teemp_id") ?>);

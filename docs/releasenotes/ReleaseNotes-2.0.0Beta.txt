@@ -1,0 +1,82 @@
+Release Notes
+xTuple Time & Expense (xtte)
+Version 2.0.0Beta
+October 7, 2010
+==================================
+
+This is the Beta release of the 2.0.0 xTuple Desktop package,
+a free and open source extension package for xTuple ERP (PostBooks, 
+Standard, and Manufacturing Editions). 
+
+xtte is available under the same Common Public Attribution 
+License (CPAL) as the PostBooks Edition of xTuple ERP 
+(www.xtuple.com/CPAL). For more information on xTuple's extension 
+package architecture, please see www.xtuple.org/developer-zone.
+
+==================================
+
+The following features and bug fixes have been added to the
+package since 1.0.9. Additional detail for each item listed below
+may be found on our community website (www.xtuple.org). Simply go
+to the Time & Expense project on the Issue Tracker and select the
+"Changelog" option.
+
+
+New Features:
+
+* Upgrade package - telite to te
+* Add ability to view a Gantt chart from Project window
+* Make Time and Expense aware of Project Accounting
+* New / Previous buttons on Sheet Line Item
+
+Bug Fixes:
+
+* Print on Save checkbox doesn't work on Time and Expense, Header
+Information Tab
+* Need a report of Time Expense History
+* On expense entry, Item Number should be first tab stop
+* Placeholder for time entry, vouchering, for contract consultants
+* Multi currency support missing from Time and Expense
+* App crashes if windows closed a certain way
+* NEW option on sheet item disabled after first use
+* Layout issue on time sheet
+* Closing sheet screen crashes the application
+* Db errors trying to create new project
+* Selecting to delete default task of a project generates DB log
+error
+* Error prevents creating new sheet
+* Selecting to create a voucher for approved expense sheet generates
+DB log error
+* Invoice generated for non-billable timesheet items
+* Employee/Vendor linkage method in T/E is inconsistent with that
+used on the Employee form
+* Saving an employee generates DB log error
+* Employee rate does not save on create new employee
+* Error message on cancel project
+* 'Save' button on Time and Expense sheet is not functional
+* Task drop-down is tiny on Project tab on TE line item
+* Qty default to 1 (instead of 0) when it's an Expense?
+* Billable column on Line Items tab?
+* When entering Sheet line item, Line # at top is not populated
+* Selecting a project with no tasks does not set task
+* Project doesn't save customer billing information
+* New Sheet defaluts to 1st person on the list
+* closing line item in View mode crashes xTuple
+* Open sheets printed report doesn't match screen
+* There is no 'TimeReport' definition
+* Closing sheet if child line item open causes crash
+* View mode of time sheet enables the user to edit sheet notes
+* Closed projects showing up in drop down list
+* Disappearing tabs
+* Item Drop Down List not viewable on Mac
+* Need to be able to close Sheets
+* No employees shown on new sheet
+* The ExpenseReport report wasn't complete at the time of rollout.
+* TimeSheet report doesn't work.
+* Invoice/Voucher shouldn't be enabled without first Approving the
+* List Price isn't populating correctly after employee/customer rates
+of zero are fetched
+* Rates aren't populating properly from Employee
+* Rates aren't populating properly from Customer
+* Non-billable project hours not posting from time sheet
+

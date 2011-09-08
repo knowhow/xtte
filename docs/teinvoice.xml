@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (c) 1998-2010 by xTuple. All rights reserved. -->
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<chapter>
+  <title>Invoicing Sheets</title>
+  <para>A key feature of Time and Expense is the ability to Invoice from Time
+  Sheets. The time and expense lines that are entered can be invoiced a number
+  of different ways. In this chapter we will review the various methods of
+  invoicing. The following topics will be covered:</para>
+  <itemizedlist>
+    <listitem>
+      <para>Approving Sheets</para>
+    </listitem>
+    <listitem>
+      <para>Invoicing Specific Sheets</para>
+    </listitem>
+    <listitem>
+      <para>Consolidated Invoices</para>
+    </listitem>
+  </itemizedlist>
+  <section>
+    <title>Approving Sheets</title>
+    <para>Before you can create and invoice for a Time Sheet you must first
+    approve the Sheet. Approving Sheets is performed in the Open Sheets
+    screen. For this scenario, we'll need to select a single Sheet to begin.
+    To select a Sheet, follow these steps:</para>
+    <orderedlist>
+      <listitem>
+        <para>Follow this path: <guimenuitem>CRM &gt; Project &gt; Time and
+        Expense...</guimenuitem></para>
+      </listitem>
+      <listitem>
+        <para>Select Status Open</para>
+      </listitem>
+      <listitem>
+        <para>Select QUERY</para>
+      </listitem>
+      <listitem>
+        <para>Right click on the open Sheet</para>
+      </listitem>
+      <listitem>
+        <para>The following screen will appear:</para>
+      </listitem>
+    </orderedlist>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="images/openapproval.png" />
+      </imageobject>
+      <caption>Open Sheets</caption>
+    </mediaobject>
+    <tip>
+      <para>Some of the button options available in the toolbar may be
+      disabled if you do not have the appropriate privileges. For more
+      information, please see <xref linkend="configurePermissions" />.</para>
+    </tip>
+    <para>Let's approve the open Sheet. To get started, follow these
+    steps:</para>
+    <orderedlist>
+      <listitem>
+        <para>Select the Sheet</para>
+      </listitem>
+      <listitem>
+        <para>Right click and select the "Approve" option. The Sheet is now
+        approved and ready for invoicing and vouchering.</para>
+      </listitem>
+      <listitem>
+        <para>A second option is to highlight the Sheet and click the APPROVE
+        button on the upper toolbar.</para>
+      </listitem>
+    </orderedlist>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="images/approved.png" />
+      </imageobject>
+      <caption>Approved Sheet</caption>
+    </mediaobject>
+  </section>
+  <section>
+    <title>Invoicing Specific Sheets</title>
+    <para>The invoicing of specific Sheets is performed in the Open Sheets
+    screen. For this scenario, we'll need to select a single Sheet to begin.
+    To select a Sheet, follow these steps:</para>
+    <orderedlist>
+      <listitem>
+        <para>Follow this path: <guimenuitem>CRM &gt; Project &gt; Time and
+        Expense...</guimenuitem></para>
+      </listitem>
+      <listitem>
+        <para>Check status Open and Approved</para>
+      </listitem>
+      <listitem>
+        <para>Then click QUERY</para>
+      </listitem>
+      <listitem>
+        <para>The following screen will appear:</para>
+      </listitem>
+    </orderedlist>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="images/approvedinvoice.png" />
+      </imageobject>
+      <caption>Open Sheets</caption>
+    </mediaobject>
+    <tip>
+      <para>Some of the button options available in the toolbar may be
+      disabled if you do not have the appropriate privileges. For more
+      information, please see <xref linkend="configurePermissions" />.</para>
+    </tip>
+    <para>Select the Invoice check box at the bottom of the screen and click
+    the PROCESS button or use the right-click "Process" option to generate an
+    Invoice. The Invoice Status will change to 'Yes' for Completed.</para>
+    <para>Next follow these steps to review the unposted Invoice:</para>
+    <orderedlist>
+      <listitem>
+        <para>Follow this path: <guimenuitem>Accounting &gt; Accounts
+        Receivable &gt; Invoice &gt; List Unposted...</guimenuitem></para>
+      </listitem>
+      <listitem>
+        <para>The following screen will appear:</para>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="images/unpostedinvoicespecific.png" />
+          </imageobject>
+          <caption>Unposted Invoices</caption>
+        </mediaobject>
+      </listitem>
+      <listitem>
+        <para>Edit the Invoice in order to review the details.</para>
+        <note>
+          <para>The Notes from the Time entry are passed through to the
+          Invoice Item. These Notes will print on the Invoice and provide
+          greater detail for the billing line</para>
+        </note>
+      </listitem>
+    </orderedlist>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="images/invoicewithnotes.png" />
+      </imageobject>
+      <caption>Invoice Item</caption>
+    </mediaobject>
+  </section>
+  <section>
+    <title>Consolidated Invoicing</title>
+    <para>The generation of Consolidated Invoices is performed in the Open
+    Sheets screen. For this scenario, we'll select multiple Sheets to begin.
+    To select multiple Sheets, follow these steps:</para>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="images/consolidatedinvoice.png" />
+      </imageobject>
+      <caption>Selection of multiple Sheets</caption>
+    </mediaobject>
+    <note>
+      <para>Consolidation will happen by Sheet Date, Customer, Purchase Order,
+      and Project.</para>
+    </note>
+    <orderedlist>
+      <listitem>
+        <para>Select multiple Sheets that have been approved</para>
+      </listitem>
+      <listitem>
+        <para>Click the PROCESS button or use the right-click "Process" option
+        to generate the consolidated Invoice.</para>
+        <note>
+          <para>The Invoice Status changes to "Yes" for Completed.</para>
+        </note>
+      </listitem>
+      <listitem>
+        <para>Review the unposted Invoice</para>
+      </listitem>
+      <listitem>
+        <para>Follow this path: <guimenuitem>Accounting &gt; Accounts
+        Receivable &gt; Invoice &gt; List Unposted...</guimenuitem></para>
+      </listitem>
+      <listitem>
+        <para>The following screen will appear:</para>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="images/unpostedconsolidated.png" />
+          </imageobject>
+          <caption>Unposted Invoices</caption>
+        </mediaobject>
+      </listitem>
+    </orderedlist>
+    <para>Once you have located the Invoice in the list, you can open it to
+    edit it or simply review the details.</para>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="images/invoice.png" />
+      </imageobject>
+      <caption>Consolidated Invoice</caption>
+    </mediaobject>
+  </section>
+</chapter>

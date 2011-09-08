@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (c) 1998-2010 by xTuple. All rights reserved. -->
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<chapter>
+  <title>Employee Costs</title>
+  <para>In order to track the cost of an Employee's time as a Project expense,
+  your system must be configured to appropriately map these expenses to your
+  Chart of Accounts. In this chapter we will review how to configure CRM
+  module to capture these costs, process Time Sheets, and review the General
+  Ledger.</para>
+  <itemizedlist>
+    <listitem>
+      <para>Configure CRM Module</para>
+    </listitem>
+    <listitem>
+      <para>Process Time Sheets</para>
+    </listitem>
+    <listitem>
+      <para>Review General Ledger</para>
+    </listitem>
+  </itemizedlist>
+  <section>
+    <title>How to Configure the CRM Module</title>
+    <para>In order to track labor overhead costs you must be sure to configure
+    the CRM module to accommodate this. Follow the steps below:</para>
+    <orderedlist>
+      <listitem>
+        <para>Open module by selecting <guilabel>CRM &gt;
+        Setup...</guilabel></para>
+      </listitem>
+      <listitem>
+        <para>The following screen will appear:</para>
+      </listitem>
+    </orderedlist>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="images/crmmodule.png" />
+      </imageobject>
+      <caption>Employee CRM Setup</caption>
+    </mediaobject>
+    <para>Select an appropriate expense account for Project Labor And
+    Overhead.</para>
+    <note>
+      <para>If an expense account is not selected you will be unable to post
+      Employee overhead costs to the General Ledger.</para>
+    </note>
+  </section>
+  <section>
+    <title>Process Time Sheets</title>
+    <para>Once items are mapped to a Project expense account and Employees are
+    set up with a compensation value (See System Administration chapter) then
+    you are ready to post time to the General Ledger. Follow these steps to
+    process an approved Time Sheet.</para>
+    <orderedlist>
+      <listitem>
+        <para>Follow this path: <guimenuitem>CRM &gt; Project &gt; Time and
+        Expense...</guimenuitem></para>
+      </listitem>
+      <listitem>
+        <para>Select approved status</para>
+      </listitem>
+      <listitem>
+        <para>Click QUERY</para>
+      </listitem>
+      <listitem>
+        <para>The following screen will appear:</para>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="images/approvetimepost.PNG" />
+          </imageobject>
+          <caption>Open Sheets</caption>
+        </mediaobject>
+      </listitem>
+    </orderedlist>
+    <para>Highlight the Sheet to be processed check the Post Time box at the
+    bottom of the screen and select the PROCESS button or right-click and
+    select "Post Time."</para>
+  </section>
+  <section>
+    <title>Review General Ledger</title>
+    <para>Once Time Sheets have been processed, you can verify whether
+    Employee costs have been posted as an expense by reviewing the General
+    Ledger transaction reports.</para>
+    <orderedlist>
+      <listitem>
+        <para>To locate the General Ledger report, follow this path:
+        <guimenuitem>Accounting &gt; General Ledger &gt; Reports &gt;
+        Transactions...</guimenuitem></para>
+      </listitem>
+      <listitem>
+        <para>Click QUERY</para>
+      </listitem>
+      <listitem>
+        <para>The following screen will appear:</para>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="images/gltransactions.PNG" />
+          </imageobject>
+          <caption>General Ledger Transactions</caption>
+        </mediaobject>
+      </listitem>
+    </orderedlist>
+    <para>You will notice the Time Sheet number and transactions are now
+    posted to the General Ledger as an expense.</para>
+  </section>
+  <section>
+    <title>Conclusion</title>
+    <para>The xTuple Time and Expense module is a powerful free component of
+    the xTuple ERP, CRM, and accounting software that allows businesses to
+    track, invoice, and pay professional services time-and-related expenses,
+    tightly integrated with the Project Management subsystem of xTuple CRM. If
+    you have questions about xTuple software, or would like to discuss
+    training, support, or potential enhancements to the software, please
+    contact <ulink
+    url="mailto:sales@xtuple.com">sales@xtuple.com</ulink>.</para>
+    <para>Thank you for your interest in xTuple ERP.</para>
+  </section>
+</chapter>

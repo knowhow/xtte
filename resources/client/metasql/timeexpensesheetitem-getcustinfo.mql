@@ -1,0 +1,6 @@
+-- Group: timeexpensesheetitem
+-- Name:  getcustinfo
+-- Notes: Get customer currency rate
+SELECT cust_curr_id 
+FROM custinfo 
+WHERE (cust_id=<? value("cust_id") ?>);

@@ -1,0 +1,7 @@
+-- Group: item
+-- Name:  updteexp
+-- Notes: Update item expense settings
+UPDATE te.teexp SET
+  teexp_expcat_id=<? value("expcat_id") ?>,
+  teexp_accnt_id=<? value("accnt_id") ?>
+WHERE (teexp_id=<? value("item_id") ?>);

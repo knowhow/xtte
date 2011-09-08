@@ -1,0 +1,4 @@
+-- Group: projectGantt
+-- Name:  jsgantt
+-- Notes: Loads jsGantt script file
+SELECT script_source FROM script WHERE script_name = 'jsGantt';

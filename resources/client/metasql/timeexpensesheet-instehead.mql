@@ -1,0 +1,14 @@
+-- Group: timeexpensesheet
+-- Name:  instehead
+-- Notes: 
+INSERT INTO te.tehead(
+  tehead_emp_id,
+  tehead_warehous_id,
+  tehead_weekending,
+  tehead_notes) 
+VALUES (
+  <? value("emp_id") ?>,
+  <? value("warehous_id") ?>,
+  <? value("weekending") ?>,
+  <? value("notes") ?>)
+RETURNING *;

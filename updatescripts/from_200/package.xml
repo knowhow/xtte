@@ -1,0 +1,63 @@
+<package id="from_200"
+         name="te"
+         developer="xTuple"
+         descrip="Time and Expense System"
+         version="2.0.1"
+         updater="2.2.2">
+  <pkgnotes>Time and Expense System Lite add-on package for xTuple ERP.
+
+        This file is part of the te package for xTuple ERP: PostBooks Edition,
+        a free and open source Enterprise Resource Planning software suite,
+        Copyright (c) 1999-2010 by OpenMFG LLC, d/b/a xTuple.
+        It is licensed to you under the Common Public Attribution License
+        version 1.0, the full text of which (including xTuple-specific Exhibits)
+        is available at www.xtuple.com/CPAL.  By using this software, you agree
+        to be bound by its terms.
+  </pkgnotes>
+
+  <prerequisite type="Query"
+                name="xTuple ERP version">
+    <query>
+      SELECT (fetchMetricText('ServerVersion') >= '3.6.0');
+    </query>
+    <message>
+      This version of the te package only works with xTuple ERP
+      versions 3.6.0 and greater.
+    </message>
+  </prerequisite>
+
+  <prerequisite type="Query"
+                name="Validate Time and Expense package version" >
+    <query>
+      SELECT COUNT(*) = 1
+      FROM (SELECT *
+            FROM pkghead
+            WHERE (pkghead_name = 'te')
+            AND (pkghead_version = '2.0.0') ) AS dummy;
+    </query>
+    <message>
+      xTuple Time and Expense 2.0.0 must be installed to run this package.
+    </message>
+  </prerequisite>
+
+  <prerequisite type="license" name="xTuple Concise EULA">
+    <message>
+      &lt;p>
+          This file is part of the xttelite package for xTuple ERP: PostBooks Edition,
+          a free and open source Enterprise Resource Planning software suite,
+          Copyright (c) 1999-2009 by OpenMFG LLC, d/b/a xTuple.
+          It is licensed to you under the Common Public Attribution License
+          version 1.0, the full text of which (including xTuple-specific Exhibits)
+          is available at www.xtuple.com/CPAL.  By using this software, you agree
+          to be bound by its terms.
+      &lt;/p>
+    </message>
+  </prerequisite>
+
+  <createfunction file="database/functions/sheetstate.sql"    name="sheetstate">Time and Expense package</createfunction>
+
+
+  <loadreport file="client/reports/TimeExpenseSheet.xml">Time and Expense package</loadreport>
+
+
+</package>

@@ -1,0 +1,5 @@
+-- Group: item
+-- Name:  delteexp
+-- Notes: Delete Item Expense Settings
+DELETE FROM te.teexp
+WHERE (teexp_id=<? value("item_id") ?>);

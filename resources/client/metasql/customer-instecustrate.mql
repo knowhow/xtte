@@ -1,0 +1,12 @@
+-- Group: customer
+-- Name:  instecustrate
+-- Notes: Insert customer rate record
+INSERT INTO te.tecustrate (
+  tecustrate_cust_id,
+  tecustrate_rate,
+  tecustrate_curr_id )
+VALUES (
+  <? value("cust_id") ?>,
+  <? value("rate") ?>,
+  <? value("curr_id") ?> )
+RETURNING *;

@@ -1,0 +1,9 @@
+-- Group: customer
+-- Name:  updtecustrate
+-- Notes: Update customer rate record
+UPDATE te.tecustrate SET
+  tecustrate_cust_id=<? value("cust_id") ?>,
+  tecustrate_rate=<? value("rate") ?>,
+  tecustrate_curr_id=<? value("curr_id") ?>
+WHERE (tecustrate_id=<? value("tecustrate_id") ?>)
+RETURNING *;

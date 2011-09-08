@@ -1,0 +1,71 @@
+<package id="from_109"
+         name="te"
+         developer="xTuple"
+         descrip="Time and Expense System Lite"
+         version="1.1.0"
+         updater="2.2.0">
+  <pkgnotes>Time and Expense System Lite add-on package for xTuple ERP.
+
+        This file is part of the te package for xTuple ERP: PostBooks Edition,
+        a free and open source Enterprise Resource Planning software suite,
+        Copyright (c) 1999-2010 by OpenMFG LLC, d/b/a xTuple.
+        It is licensed to you under the Common Public Attribution License
+        version 1.0, the full text of which (including xTuple-specific Exhibits)
+        is available at www.xtuple.com/CPAL.  By using this software, you agree
+        to be bound by its terms.
+  </pkgnotes>
+
+  <prerequisite type="Query" name="Checking TE Package" >
+    <query>SELECT TRUE FROM pkghead WHERE pkghead_name = 'te';</query>
+    <message>This package requires that it be applied against a Postbooks Server Database that already contains the TE package.</message>
+  </prerequisite>
+  <prerequisite type="Query" name="Checking Package Version" >
+    <query>SELECT TRUE FROM pkghead WHERE pkghead_name = 'te' AND lower(pkghead_version) = '1.0.9';</query>
+    <message>This package requires that it be applied against the 1.0.9 version of the TE Package.</message>
+  </prerequisite>
+
+  <prerequisite type="license" name="xTuple Concise EULA">
+    <message>
+      &lt;p>
+          This file is part of the xttelite package for xTuple ERP: PostBooks Edition,
+          a free and open source Enterprise Resource Planning software suite,
+          Copyright (c) 1999-2009 by OpenMFG LLC, d/b/a xTuple.
+          It is licensed to you under the Common Public Attribution License
+          version 1.0, the full text of which (including xTuple-specific Exhibits)
+          is available at www.xtuple.com/CPAL.  By using this software, you agree
+          to be bound by its terms.
+      &lt;/p>
+    </message>
+  </prerequisite>
+    
+  <script file="database/misc/insertIntopriv.sql" />
+
+  <createfunction file="database/functions/approvesheet.sql"    name="approvesheet" />
+  <createfunction file="database/functions/consolidateinvoice.sql" name="consolidateinvoice" />
+  <createfunction file="database/functions/insertmiscvoucher.sql"  name="insertmiscvoucher" />
+  <createfunction file="database/functions/invoicesheet.sql"       name="invoicesheet" />
+  <createfunction file="database/functions/resetsheetstatus.sql"   name="resetsheetstatus" />
+  <createfunction file="database/functions/vouchersheet.sql"       name="vouchersheet" />
+
+  <createtable file="database/tables/createtehead.sql"          name="tehead"/>
+  <createtable file="database/tables/createteitem.sql"          name="teitem"/>
+
+  <script file="database/views/voucher.sql"       onerror="Prompt"/>
+
+  <loadappscript file="client/scripts/employee.js"              name="employee"     order="0"/>
+  <loadappscript file="client/scripts/item.js"                  name="item"         order="0"/>
+  <loadappscript file="client/scripts/te.js"             	name="te"           order="0"/>
+  <loadappscript file="client/scripts/telines.js"               name="telines"          order="0"/>
+  <loadappscript file="client/scripts/tesheet.js"               name="tesheet"      order="0"/>
+  <loadappscript file="client/scripts/time_expense.js"          name="time_expense" order="0"/>
+  <loadappscript file="client/scripts/unpostedInvoices.js"      name="unpostedInvoices" order="0"/>
+
+  <loadappui file="client/uiforms/expense.ui"                   order="0" />
+  <loadappui file="client/uiforms/time_expense.ui"              order="0" />
+  <loadappui file="client/uiforms/tesheet.ui"                   order="0" />
+  <loadappui file="client/uiforms/telines.ui"                   order="0" />
+  
+  <loadreport  file="client/reports/expensereport.xml" />
+  <loadreport  file="client/reports/opensheetlist.xml" />
+  <loadreport  file="client/reports/timereport.xml" />
+</package>

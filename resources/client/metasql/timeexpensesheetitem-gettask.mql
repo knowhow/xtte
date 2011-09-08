@@ -1,0 +1,13 @@
+-- Group: timeexpensesheetitem
+-- Name: gettask
+-- Notes: Get Project task list
+
+SELECT 
+  prjtask_id,
+  (prjtask_number || ' - ' || prjtask_name) AS name 
+FROM prjtask 
+WHERE (prjtask_prj_id = <? value("prj_id") ?>)
+<? if exists("active") ?>
+  AND (prjtask_status IN ('O','P'))
+<? endif ?>
+ORDER by prjtask_number;

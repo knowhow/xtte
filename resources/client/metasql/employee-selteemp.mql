@@ -1,0 +1,6 @@
+-- Group: employee
+-- Name:  selteemp
+-- Notes: Select Default Employee Time Expense Info
+SELECT *
+FROM te.teemp
+WHERE (teemp_emp_id=<? value("emp_id") ?>);

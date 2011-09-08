@@ -1,0 +1,9 @@
+-- Group: employee
+-- Name:  insteemp
+-- Notes: Insert employee time expense record
+INSERT INTO te.teemp (
+  teemp_emp_id,
+  teemp_contractor )
+VALUES (
+  <? value("emp_id") ?>,
+  <? value("contractor") ?>);
