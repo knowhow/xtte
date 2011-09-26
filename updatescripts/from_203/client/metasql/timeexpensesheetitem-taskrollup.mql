@@ -1,0 +1,34 @@
+-- Group: timeexpensesheetitem
+-- Name:  taskrollup
+-- Notes: Total hours and expenses including unapproved sheets
+SELECT 
+  formatQty(SUM(total_hours)) AS total_hours,
+  formatMoney(SUM(total_expense)) AS total_expense
+FROM
+  (
+   SELECT 
+     prjtask_hours_actual AS total_hours,
+     prjtask_exp_actual AS total_expense
+   FROM prjtask 
+   WHERE prjtask_id = <? value("task_id") ?>
+   UNION
+   SELECT
+     SUM(teitem_qty) as total_hours,
+     0 as total_expense
+   FROM te.teitem 
+     JOIN te.tehead ON (tehead_id=teitem_tehead_id)
+   WHERE teitem_prjtask_id = <? value("task_id") ?>
+    AND teitem_type = 'T' 
+--    AND teitem_id != <? value("teitem_id") ?>
+    AND tehead_status = 'O'
+   UNION
+   SELECT 
+     0 as total_hours,
+     SUM(teitem_total) AS total_expense
+   FROM te.teitem 
+     JOIN te.tehead ON (tehead_id=teitem_tehead_id)
+   WHERE teitem_prjtask_id = <? value("task_id") ?>
+     AND teitem_type = 'E'
+--     AND teitem_id != <? value("teitem_id") ?>
+     AND tehead_status = 'O'
+) AS rollup;

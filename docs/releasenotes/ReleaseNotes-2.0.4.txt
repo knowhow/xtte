@@ -1,0 +1,29 @@
+Release Notes
+xTuple Time & Expense (xtte)
+Version 2.0.4
+September 26, 2011
+==================================
+
+This is the 2.0.4 patch release of the xTuple Time & Expense
+package, a free and open source extension package for xTuple ERP
+(PostBooks, Standard, and Manufacturing Editions).
+
+The Time & Expense package (xtte) is available under the same
+Common Public Attribution License (CPAL) as the PostBooks Edition
+of xTuple ERP (www.xtuple.com/CPAL). For more information on
+xTuple's extension package architecture, please see
+www.xtuple.org/developer-zone.
+
+==================================
+
+The following bug fixes have been added to the
+package since 2.0.3. Additional detail for each item listed below
+may be found on our community website (www.xtuple.org). 
+
+Bug Fixes:
+
+* Print report of Expense Sheet doesn't display the text clearly [12570]
+* Billing rate (and customer) not displayed but stored in table [13426]
+* Voucher created from Sheet should retain Invoice Date as Distribution Date [14265]
+* Rouding on T&E line [14933]
+

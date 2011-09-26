@@ -288,12 +288,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../scripts/project.js" line="173"/>
+        <location filename="../scripts/project.js" line="180"/>
         <source>You must enter a valid Due Date</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../scripts/project.js" line="174"/>
+        <location filename="../scripts/project.js" line="181"/>
         <source>Invalid Date</source>
         <translation type="unfinished"></translation>
     </message>
@@ -452,7 +452,6 @@
     </message>
     <message>
         <location filename="../scripts/timeExpenseSheet.js" line="56"/>
-        <location filename="../uiforms/timeExpenseSheetByProject.ui" line="757"/>
         <source>Billable</source>
         <translation type="unfinished"></translation>
     </message>
@@ -559,129 +558,41 @@
     </message>
     <message>
         <location filename="../uiforms/timeExpenseSheet.ui" line="27"/>
-        <location filename="../uiforms/timeExpenseSheetByProject.ui" line="27"/>
         <source>Time and Expense</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../uiforms/timeExpenseSheet.ui" line="38"/>
-        <location filename="../uiforms/timeExpenseSheetByProject.ui" line="38"/>
         <source>Sheet #:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../uiforms/timeExpenseSheet.ui" line="45"/>
-        <location filename="../uiforms/timeExpenseSheetByProject.ui" line="45"/>
         <source>...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../uiforms/timeExpenseSheet.ui" line="84"/>
-        <location filename="../uiforms/timeExpenseSheetByProject.ui" line="84"/>
         <source>S&amp;heet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../uiforms/timeExpenseSheet.ui" line="92"/>
-        <location filename="../uiforms/timeExpenseSheetByProject.ui" line="92"/>
         <source>Week of Date:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../uiforms/timeExpenseSheet.ui" line="121"/>
-        <location filename="../uiforms/timeExpenseSheetByProject.ui" line="121"/>
         <source>Site:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../uiforms/timeExpenseSheet.ui" line="150"/>
-        <location filename="../uiforms/timeExpenseSheetByProject.ui" line="150"/>
         <source>Employee:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../uiforms/timeExpenseSheetByProject.ui" line="221"/>
-        <source>Project #</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../uiforms/timeExpenseSheetByProject.ui" line="228"/>
-        <source>Task:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../uiforms/timeExpenseSheetByProject.ui" line="260"/>
-        <source>Mon.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../uiforms/timeExpenseSheetByProject.ui" line="273"/>
-        <source>Tues.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../uiforms/timeExpenseSheetByProject.ui" line="292"/>
-        <source>Wed.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../uiforms/timeExpenseSheetByProject.ui" line="311"/>
-        <source>Thur.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../uiforms/timeExpenseSheetByProject.ui" line="330"/>
-        <source>Fri.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../uiforms/timeExpenseSheetByProject.ui" line="349"/>
-        <source>Sat.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../uiforms/timeExpenseSheetByProject.ui" line="368"/>
-        <source>Sun.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../uiforms/timeExpenseSheetByProject.ui" line="387"/>
-        <source>Bill</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../uiforms/timeExpenseSheetByProject.ui" line="656"/>
-        <source>Rate:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../uiforms/timeExpenseSheetByProject.ui" line="671"/>
-        <source>timedtl_rate</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../uiforms/timeExpenseSheetByProject.ui" line="678"/>
-        <source>Total:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../uiforms/timeExpenseSheetByProject.ui" line="713"/>
-        <source>  PO#:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../uiforms/timeExpenseSheetByProject.ui" line="789"/>
-        <source>Customer:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../uiforms/timeExpenseSheetByProject.ui" line="779"/>
-        <source>Item:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../uiforms/timeExpenseSheet.ui" line="199"/>
-        <location filename="../uiforms/timeExpenseSheetByProject.ui" line="169"/>
         <source>&amp;New</source>
         <translation type="unfinished"></translation>
     </message>
@@ -703,13 +614,11 @@
     <message>
         <location filename="../scripts/timeExpenseSheet.js" line="52"/>
         <location filename="../uiforms/timeExpenseSheet.ui" line="264"/>
-        <location filename="../uiforms/timeExpenseSheetByProject.ui" line="814"/>
         <source>Notes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../uiforms/timeExpenseSheet.ui" line="281"/>
-        <location filename="../uiforms/timeExpenseSheetByProject.ui" line="831"/>
         <source>Print on Save</source>
         <translation type="unfinished"></translation>
     </message>
@@ -754,7 +663,7 @@
     </message>
     <message>
         <location filename="../scripts/timeExpenseSheetItem.js" line="255"/>
-        <location filename="../scripts/timeExpenseSheetItem.js" line="663"/>
+        <location filename="../scripts/timeExpenseSheetItem.js" line="652"/>
         <source>New</source>
         <translation type="unfinished"></translation>
     </message>
@@ -816,25 +725,25 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../scripts/timeExpenseSheetItem.js" line="545"/>
-        <location filename="../scripts/timeExpenseSheetItem.js" line="586"/>
+        <location filename="../scripts/timeExpenseSheetItem.js" line="534"/>
+        <location filename="../scripts/timeExpenseSheetItem.js" line="575"/>
         <source>Unsaved Changed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../scripts/timeExpenseSheetItem.js" line="546"/>
-        <location filename="../scripts/timeExpenseSheetItem.js" line="587"/>
+        <location filename="../scripts/timeExpenseSheetItem.js" line="535"/>
+        <location filename="../scripts/timeExpenseSheetItem.js" line="576"/>
         <source>&lt;p&gt;You have made some changes which have not yet been saved!
 Would you like to save them now?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../scripts/timeExpenseSheetItem.js" line="707"/>
+        <location filename="../scripts/timeExpenseSheetItem.js" line="696"/>
         <source>Time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../scripts/timeExpenseSheetItem.js" line="708"/>
+        <location filename="../scripts/timeExpenseSheetItem.js" line="697"/>
         <source>Expense</source>
         <translation type="unfinished"></translation>
     </message>
